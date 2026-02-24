@@ -292,7 +292,7 @@
         .section-title p {
             color: var(--secondary);
             font-size: 0.97rem;
-            max-width: 540px;
+            max-width: 640px;
             margin: 0 auto;
         }
         .title-bar {
@@ -836,7 +836,7 @@
         <div class="hero-content">
             <div class="hero-badge">PECI 2025 / 2026 &nbsp;·&nbsp; Universidade de Aveiro</div>
             <h1 data-i18n="hero-h1">Wearables Programáveis para<br>Perceção Humana</h1>
-            <p data-i18n="hero-p">Aquisição multimodal baseada em Wearables para garantir a segurança de peões e utilizadores vulneráveis (VRUs) em cidades inteligentes.</p>
+            <p data-i18n="hero-p">Aquisição multimodal baseada em Wearables para garantir a segurança rodoviária de peões e utilizadores vulneráveis da estrada (VRUs).</p>
             <div class="hero-actions">
                 <a href="#about" class="btn btn-primary">
                     <i class="fa-solid fa-arrow-down"></i> <span data-i18n="hero-cta1">Descobrir o Projeto</span>
@@ -858,33 +858,33 @@
             <div class="section-title fade-up">
                 <h2 data-i18n="about-h2">Problema &amp; Oportunidade</h2>
                 <div class="title-bar"></div>
-                <p data-i18n="about-sub">Porquê Wearables? Porque o utilizador vulnerável já está no centro do problema.</p>
+                <p data-i18n="about-sub">Distrações, ausência de alertas e falta de comunicação colocam peões e ciclistas em risco todos os dias.</p>
             </div>
             <div class="about-grid">
                 <div class="about-text fade-up">
-                    <p data-i18n="about-p1">A procura por <strong>Cidades Inteligentes</strong> e condução autónoma está a crescer rapidamente. No entanto, os sistemas tradicionais baseados em infraestrutura — câmaras e radares fixos — revelam-se frequentemente insuficientes devido a <strong>cobertura limitada, pontos cegos e custos elevados</strong> de implementação e manutenção.</p>
-                    <p data-i18n="about-p2">O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Aproveitando os sensores presentes nos <strong>Wearables</strong> que já usamos quotidianamente, é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados.</p>
+                    <p data-i18n="about-p1">A segurança rodoviária é comprometida por <strong>distrações do peão e do condutor</strong> e pela <strong>ausência de alertas atempados</strong>. O que falta hoje são alertas em tempo útil, feedback discreto ao utilizador e um sistema dinâmico, simples e acessível que não dependa exclusivamente de infraestrutura fixa.</p>
+                    <p data-i18n="about-p2">O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Utilizando <strong>Wearables discretos</strong> — Omi Glasses, WristBand e Smartphone — é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados via infraestrutura V2X.</p>
                 </div>
                 <div class="about-highlights fade-up delay-2">
                     <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fa-solid fa-eye-slash"></i></div>
+                        <div class="highlight-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         <div>
-                            <h4 data-i18n="hl1-h4">Pontos Cegos &amp; Cobertura</h4>
-                            <p data-i18n="hl1-p">Infraestrutura estática não cobre todos os cenários de risco urbano.</p>
+                            <h4 data-i18n="hl1-h4">Distrações &amp; Riscos</h4>
+                            <p data-i18n="hl1-p">Peões distraídos e condutores desatentos representam riscos graves que os sistemas atuais não conseguem mitigar em tempo real.</p>
                         </div>
                     </div>
                     <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fa-solid fa-cloud"></i></div>
+                        <div class="highlight-icon"><i class="fa-solid fa-glasses"></i></div>
                         <div>
-                            <h4 data-i18n="hl2-h4">Processamento na Cloud</h4>
-                            <p data-i18n="hl2-p">Dados anonimizados enviados para cloud com maior capacidade computacional para inferência dos modelos de ML.</p>
+                            <h4 data-i18n="hl2-h4">Wearables Discretos</h4>
+                            <p data-i18n="hl2-p">Omi Glasses (câmara, microfone, IMU), WristBand (IMU, motor de vibração) e Smartphone (GPS, acelerómetro) como sensores de contexto.</p>
                         </div>
                     </div>
                     <div class="highlight-card">
                         <div class="highlight-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
                         <div>
-                            <h4 data-i18n="hl3-h4">Integração V2X</h4>
-                            <p data-i18n="hl3-p">As intenções detetadas são propagadas em tempo real via ITS-G5.</p>
+                            <h4 data-i18n="hl3-h4">Comunicação V2X</h4>
+                            <p data-i18n="hl3-p">As intenções detetadas são propagadas em tempo real via ITS-G5 para veículos e infraestrutura da cidade inteligente.</p>
                         </div>
                     </div>
                 </div>
@@ -907,38 +907,32 @@
             <div class="section-title fade-up">
                 <h2 data-i18n="tasks-h2">Tarefas do Projeto</h2>
                 <div class="title-bar"></div>
-                <p data-i18n="tasks-sub">Cinco frentes de trabalho integradas para uma solução completa de ponta a ponta.</p>
+                <p data-i18n="tasks-sub">Quatro frentes de trabalho integradas para uma solução completa de ponta a ponta.</p>
             </div>
             <div class="tasks-grid">
 
                 <div class="task-card fade-up delay-1">
-                    <div class="task-icon"><i class="fa-solid fa-layer-group"></i></div>
-                    <h4 data-i18n="task1-h4">Camada de Abstração</h4>
-                    <p data-i18n="task1-p">Desenvolvimento de componentes para abstração dos dados recolhidos, tornando o sistema agnóstico a diferentes dispositivos Wearables.</p>
+                    <div class="task-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h4 data-i18n="task1-h4">Extração de Dados</h4>
+                    <p data-i18n="task1-p">Caracterização e integração dos Wearables (Omi Glasses, WristBand, Smartphone), desenvolvimento do módulo de aquisição de dados e criação de datasets para treino.</p>
                 </div>
 
                 <div class="task-card fade-up delay-2">
-                    <div class="task-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <h4 data-i18n="task2-h4">Sincronização Multimodal</h4>
-                    <p data-i18n="task2-p">Alinhamento de diferentes fluxos de dados e correção de desvios de relógio para criar um contexto unificado em tempo real.</p>
+                    <div class="task-icon"><i class="fa-solid fa-shuffle"></i></div>
+                    <h4 data-i18n="task2-h4">Gateway e Sincronização</h4>
+                    <p data-i18n="task2-p">Desenvolvimento da aplicação móvel Android como hub central, capaz de receber e sincronizar fluxos de dados de múltiplos Wearables em simultâneo.</p>
                 </div>
 
                 <div class="task-card fade-up delay-3">
                     <div class="task-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h4 data-i18n="task3-h4">Machine Learning</h4>
-                    <p data-i18n="task3-p">Recolha de datasets e treino de modelos leves para deteção de intenções — como "levantar a mão" ou "mudança de direção".</p>
+                    <h4 data-i18n="task3-h4">Processamento e Eventos</h4>
+                    <p data-i18n="task3-p">Pipeline de processamento com modelos de ML para deteção de eventos simples — como intenção de travessia ou peão distraído — com decisão sobre local de execução (edge vs cloud).</p>
                 </div>
 
                 <div class="task-card fade-up delay-4">
-                    <div class="task-icon"><i class="fa-brands fa-android"></i></div>
-                    <h4 data-i18n="task4-h4">Wearable Data Hub</h4>
-                    <p data-i18n="task4-p">App Android para descoberta via BLE/Wi-Fi, aquisição de dados dos Wearables e envio para cloud para execução dos modelos de ML.</p>
-                </div>
-
-                <div class="task-card fade-up delay-5">
-                    <div class="task-icon"><i class="fa-solid fa-car-side"></i></div>
-                    <h4 data-i18n="task5-h4">Integração V2X</h4>
-                    <p data-i18n="task5-p">Propagação dos resultados para a infraestrutura da cidade inteligente e testes em cenário real com o veículo PIXKIT.</p>
+                    <div class="task-icon"><i class="fa-solid fa-bell"></i></div>
+                    <h4 data-i18n="task4-h4">Exposição e Feedback</h4>
+                    <p data-i18n="task4-p">Demonstração end-to-end com visualização dos dados, comunicação V2X via ATCLL e feedback em tempo real ao utilizador (alertas visuais e vibratórios).</p>
                 </div>
 
             </div>
@@ -965,9 +959,9 @@
                     <p data-i18n="tech2-p">Comunicação Wearables</p>
                 </div>
                 <div class="tech-item fade-up delay-3">
-                    <i class="fa-solid fa-vr-cardboard"></i>
-                    <h4 data-i18n="tech3-h4">Equipamentos XR</h4>
-                    <p>Meta Quest, HoloLens, Omi</p>
+                    <i class="fa-solid fa-glasses"></i>
+                    <h4 data-i18n="tech3-h4">Wearables</h4>
+                    <p data-i18n="tech3-p">Omi Glasses, WristBand, Smartphone</p>
                 </div>
                 <div class="tech-item fade-up delay-4">
                     <i class="fa-solid fa-network-wired"></i>
@@ -975,9 +969,9 @@
                     <p data-i18n="tech4-p">Comunicações Veiculares</p>
                 </div>
                 <div class="tech-item fade-up delay-5">
-                    <i class="fa-brands fa-github"></i>
-                    <h4>GitHub</h4>
-                    <p data-i18n="tech5-p">Versionamento &amp; Hosting</p>
+                    <i class="fa-brands fa-gitlab"></i>
+                    <h4>GitLab</h4>
+                    <p data-i18n="tech5-p">Versionamento &amp; CI/CD</p>
                 </div>
             </div>
         </div>
@@ -1010,8 +1004,8 @@
                 <div class="task-card fade-up delay-3">
                     <span class="milestone-badge" data-i18n="m3-badge">M3 &nbsp;·&nbsp; Semanas 7–9</span>
                     <div class="task-icon"><i class="fa-solid fa-code-merge"></i></div>
-                    <h4>Construction</h4>
-                    <p>Pipeline cloud com modelos de ML, visualização e e comunicação V2X via ATCLL, e primeiro protótipo funcional com os Smart Glasses (Omi Glasses).</p>
+                    <h4 data-i18n="m3-h4">Construction</h4>
+                    <p data-i18n="m3-p">Pipeline cloud com modelos de ML, visualização e comunicação V2X via ATCLL, e primeiro protótipo funcional com os Smart Glasses (Omi Glasses).</p>
                 </div>
 
                 <div class="task-card fade-up delay-4">
@@ -1123,7 +1117,7 @@
                 <div class="related-card fade-up delay-2">
                     <span class="related-tag tag-paper" data-i18n="rel2-tag">Artigo Científico</span>
                     <h4 data-i18n="rel2-h4">SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety</h4>
-                    <p data-i18n="rel2-p">Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Estudo com 20 utilizadores. AutomotiveUI '24, Stanford.</p>
+                    <p data-i18n="rel2-p">Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Valida a eficácia de alertas ao VRU — o nosso projeto fornece os dados sensoriais. AutomotiveUI '24, Stanford.</p>
                     <div class="related-footer">
                         <span class="related-source">
                             <i class="fa-solid fa-book-open"></i> <span data-i18n="rel2-src">Clérigo, Rito, Sargento et al. &mdash; 2024</span>
@@ -1135,7 +1129,7 @@
                 <div class="related-card fade-up delay-3">
                     <span class="related-tag tag-paper" data-i18n="rel3-tag">Demo IEEE VNC 2025</span>
                     <h4 data-i18n="rel3-h4">Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety</h4>
-                    <p data-i18n="rel3-p">Demonstração de um hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5. Deteção de objetos em tempo real com latência inferior a 300 ms e transmissão V2X. IEEE VNC 2025.</p>
+                    <p data-i18n="rel3-p">Conceito base do VRU como sensor — estendemos a abordagem para wearables discretos (Omi Glasses + WristBand). Hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5, com deteção em tempo real. IEEE VNC 2025.</p>
                     <div class="related-footer">
                         <span class="related-source">
                             <i class="fa-solid fa-book-open"></i> <span data-i18n="rel3-src">G. Silva, Clérigo, Rito, Sargento &mdash; 2025</span>
@@ -1195,7 +1189,7 @@
                 </div>
 
                 <div class="team-member fade-up delay-5">
-                    <img src="img/tomas_cruz.jpg" alt="Tomás Cruz">
+                    <img src="https://ui-avatars.com/api/?name=Tomas+Cruz&background=4a6580&color=fff&size=200&bold=true" alt="Tomás Cruz">
                     <h4>Tomás Cruz</h4>
                     <p class="role" data-i18n="team-role">Membro da Equipa</p>
                     <div class="social-links">
@@ -1301,41 +1295,40 @@
                 'nav-related': 'Trabalhos Relacionados',
                 'nav-team':    'Equipa',
                 'hero-h1':     'Wearables Programáveis para<br>Perceção Humana',
-                'hero-p':      'Aquisição multimodal baseada em Wearables para garantir a segurança de peões e utilizadores vulneráveis (VRUs) em cidades inteligentes.',
+                'hero-p':      'Aquisição multimodal baseada em Wearables para garantir a segurança rodoviária de peões e utilizadores vulneráveis da estrada (VRUs).',
                 'hero-cta1':   'Descobrir o Projeto',
                 'hero-cta2':   'A Equipa',
                 'hero-scroll': 'scroll',
                 'about-h2':    'Problema &amp; Oportunidade',
-                'about-sub':   'Porquê Wearables? Porque o utilizador vulnerável já está no centro do problema.',
-                'about-p1':    'A procura por <strong>Cidades Inteligentes</strong> e condução autónoma está a crescer rapidamente. No entanto, os sistemas tradicionais baseados em infraestrutura — câmaras e radares fixos — revelam-se frequentemente insuficientes devido a <strong>cobertura limitada, pontos cegos e custos elevados</strong> de implementação e manutenção.',
-                'about-p2':    'O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Aproveitando os sensores presentes nos <strong>Wearables</strong> que já usamos quotidianamente, é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados.',
-                'hl1-h4':      'Pontos Cegos &amp; Cobertura',
-                'hl1-p':       'Infraestrutura estática não cobre todos os cenários de risco urbano.',
-                'hl2-h4':      'Processamento na Cloud',
-                'hl2-p':       'Dados anonimizados enviados para cloud com maior capacidade computacional para inferência dos modelos de ML.',
-                'hl3-h4':      'Integração V2X',
-                'hl3-p':       'As intenções detetadas são propagadas em tempo real via ITS-G5.',
+                'about-sub':   'Distrações, ausência de alertas e falta de comunicação colocam peões e ciclistas em risco todos os dias.',
+                'about-p1':    'A segurança rodoviária é comprometida por <strong>distrações do peão e do condutor</strong> e pela <strong>ausência de alertas atempados</strong>. O que falta hoje são alertas em tempo útil, feedback discreto ao utilizador e um sistema dinâmico, simples e acessível que não dependa exclusivamente de infraestrutura fixa.',
+                'about-p2':    'O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Utilizando <strong>Wearables discretos</strong> — Omi Glasses, WristBand e Smartphone — é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados via infraestrutura V2X.',
+                'hl1-h4':      'Distrações &amp; Riscos',
+                'hl1-p':       'Peões distraídos e condutores desatentos representam riscos graves que os sistemas atuais não conseguem mitigar em tempo real.',
+                'hl2-h4':      'Wearables Discretos',
+                'hl2-p':       'Omi Glasses (câmara, microfone, IMU), WristBand (IMU, motor de vibração) e Smartphone (GPS, acelerómetro) como sensores de contexto.',
+                'hl3-h4':      'Comunicação V2X',
+                'hl3-p':       'As intenções detetadas são propagadas em tempo real via ITS-G5 para veículos e infraestrutura da cidade inteligente.',
                 'privacy-h4':  'Privacidade &amp; Conformidade RGPD',
                 'privacy-p':   'Os dados recolhidos — incluindo gestos e postura captados pelos Wearables — são <strong>anonimizados na origem</strong>, antes de qualquer transmissão. Os dados anonimizados são enviados para uma <strong>infraestrutura cloud</strong> para processamento pelos modelos de ML, dado o maior poder computacional disponível face ao dispositivo móvel. Nenhum dado pessoal identificável é transmitido ou armazenado externamente. Todo o tratamento de informação está em conformidade com o <strong>Regulamento Geral sobre a Proteção de Dados (RGPD / GDPR)</strong>, garantindo a privacidade e os direitos dos participantes em todas as fases do projeto.',
                 'tasks-h2':    'Tarefas do Projeto',
-                'tasks-sub':   'Cinco frentes de trabalho integradas para uma solução completa de ponta a ponta.',
-                'task1-h4':    'Camada de Abstração',
-                'task1-p':     'Desenvolvimento de componentes para abstração dos dados recolhidos, tornando o sistema agnóstico a diferentes dispositivos Wearables.',
-                'task2-h4':    'Sincronização Multimodal',
-                'task2-p':     'Alinhamento de diferentes fluxos de dados e correção de desvios de relógio para criar um contexto unificado em tempo real.',
-                'task3-h4':    'Machine Learning',
-                'task3-p':     'Recolha de datasets e treino de modelos leves para deteção de intenções — como "levantar a mão" ou "mudança de direção".',
-                'task4-h4':    'Wearable Data Hub',
-                'task4-p':     'App Android para descoberta via BLE/Wi-Fi, aquisição de dados dos Wearables e envio para cloud para execução dos modelos de ML.',
-                'task5-h4':    'Integração V2X',
-                'task5-p':     'Propagação dos resultados para a infraestrutura da cidade inteligente e testes em cenário real com o veículo PIXKIT.',
+                'tasks-sub':   'Quatro frentes de trabalho integradas para uma solução completa de ponta a ponta.',
+                'task1-h4':    'Extração de Dados',
+                'task1-p':     'Caracterização e integração dos Wearables (Omi Glasses, WristBand, Smartphone), desenvolvimento do módulo de aquisição de dados e criação de datasets para treino.',
+                'task2-h4':    'Gateway e Sincronização',
+                'task2-p':     'Desenvolvimento da aplicação móvel Android como hub central, capaz de receber e sincronizar fluxos de dados de múltiplos Wearables em simultâneo.',
+                'task3-h4':    'Processamento e Eventos',
+                'task3-p':     'Pipeline de processamento com modelos de ML para deteção de eventos simples — como intenção de travessia ou peão distraído — com decisão sobre local de execução (edge vs cloud).',
+                'task4-h4':    'Exposição e Feedback',
+                'task4-p':     'Demonstração end-to-end com visualização dos dados, comunicação V2X via ATCLL e feedback em tempo real ao utilizador (alertas visuais e vibratórios).',
                 'tech-h2':     'Tecnologias',
                 'tech-sub':    'Ferramentas e protocolos que sustentam a solução.',
                 'tech1-p':     'Data Hub &amp; Mobile Dev',
                 'tech2-p':     'Comunicação Wearables',
-                'tech3-h4':    'Equipamentos XR',
+                'tech3-h4':    'Wearables',
+                'tech3-p':     'Omi Glasses, WristBand, Smartphone',
                 'tech4-p':     'Comunicações Veiculares',
-                'tech5-p':     'Versionamento &amp; Hosting',
+                'tech5-p':     'Versionamento &amp; CI/CD',
                 'roadmap-h2':  'Roadmap do Projeto',
                 'roadmap-sub': 'O nosso planeamento de execução ao longo do semestre (Semanas 1 a 14).',
                 'm1-badge':    'M1 &nbsp;·&nbsp; Semanas 1–3',
@@ -1346,7 +1339,7 @@
                 'm2-p':        'Desenvolvimento da aplicação móvel, streaming simultâneo de múltiplos sensores, sincronização de fluxos de dados e elaboração do relatório de Elaboration.',
                 'm3-badge':    'M3 &nbsp;·&nbsp; Semanas 7–9',
                 'm3-h4':       'Construction',
-                'm3-p':        'Pipeline cloud com modelos de ML, visualização e comunicação V2X via ATCLL, e primeiro protótipo funcional com os óculos XR (HoloLens / Meta Quest).',
+                'm3-p':        'Pipeline cloud com modelos de ML, visualização e comunicação V2X via ATCLL, e primeiro protótipo funcional com os Smart Glasses (Omi Glasses).',
                 'm4-badge':    'M4 &nbsp;·&nbsp; Semanas 10–14',
                 'm4-h4':       'Transition',
                 'm4-p':        'Feedback ao utilizador em tempo real, integração End-to-End completa, testes reais com o veículo PIXKIT no ATCLL, apresentação final e poster para DETI Students.',
@@ -1372,11 +1365,11 @@
                 'rel1-src':    'Universidade de Aveiro / IT',
                 'rel2-tag':    'Artigo Científico',
                 'rel2-h4':     'SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety',
-                'rel2-p':      'Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Estudo com 20 utilizadores. AutomotiveUI \'24, Stanford.',
+                'rel2-p':      'Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Valida a eficácia de alertas ao VRU — o nosso projeto fornece os dados sensoriais. AutomotiveUI \'24, Stanford.',
                 'rel2-src':    'Clérigo, Rito, Sargento et al. &mdash; 2024',
                 'rel3-tag':    'Demo IEEE VNC 2025',
                 'rel3-h4':     'Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety',
-                'rel3-p':      'Demonstração de um hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5. Deteção de objetos em tempo real com latência inferior a 300 ms e transmissão V2X. IEEE VNC 2025.',
+                'rel3-p':      'Conceito base do VRU como sensor — estendemos a abordagem para wearables discretos (Omi Glasses + WristBand). Hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5, com deteção em tempo real. IEEE VNC 2025.',
                 'rel3-src':    'G. Silva, Clérigo, Rito, Sargento &mdash; 2025',
                 'btn-read-more':'Ler mais',
                 'team-h2':     'A Nossa Equipa',
@@ -1402,41 +1395,40 @@
                 'nav-related': 'Related Work',
                 'nav-team':    'Team',
                 'hero-h1':     'Programmable Wearables for<br>Human Perception',
-                'hero-p':      'Multimodal Wearable-based acquisition to ensure the safety of pedestrians and vulnerable road users (VRUs) in smart cities.',
+                'hero-p':      'Multimodal Wearable-based acquisition to ensure the road safety of pedestrians and vulnerable road users (VRUs).',
                 'hero-cta1':   'Discover the Project',
                 'hero-cta2':   'The Team',
                 'hero-scroll': 'scroll',
                 'about-h2':    'Problem &amp; Opportunity',
-                'about-sub':   'Why Wearables? Because the vulnerable user is already at the center of the problem.',
-                'about-p1':    'The demand for <strong>Smart Cities</strong> and autonomous driving is growing rapidly. However, traditional infrastructure-based systems — fixed cameras and radars — often prove insufficient due to <strong>limited coverage, blind spots, and high deployment and maintenance costs</strong>.',
-                'about-p2':    'Our project addresses this problem directly from the perspective of the vulnerable road user (pedestrian / cyclist). By leveraging the sensors already present in <strong>Wearables</strong> we use daily, it is possible to detect gestures, posture, and attention, converting them into "intentions" transmitted in real time to connected vehicles.',
-                'hl1-h4':      'Blind Spots &amp; Coverage',
-                'hl1-p':       'Static infrastructure does not cover all urban risk scenarios.',
-                'hl2-h4':      'Cloud Processing',
-                'hl2-p':       'Anonymised data sent to the cloud with greater computational capacity for ML model inference.',
-                'hl3-h4':      'V2X Integration',
-                'hl3-p':       'Detected intentions are propagated in real time via ITS-G5.',
+                'about-sub':   'Distractions, lack of timely alerts, and poor communication put pedestrians and cyclists at risk every day.',
+                'about-p1':    'Road safety is compromised by <strong>pedestrian and driver distractions</strong> and the <strong>absence of timely alerts</strong>. What is missing today are real-time warnings, discreet user feedback, and a dynamic, simple, and accessible system that does not rely exclusively on fixed infrastructure.',
+                'about-p2':    'Our project addresses this problem directly from the perspective of the vulnerable road user (pedestrian / cyclist). Using <strong>discreet Wearables</strong> — Omi Glasses, WristBand, and Smartphone — it is possible to detect gestures, posture, and attention, converting them into "intentions" transmitted in real time to connected vehicles via V2X infrastructure.',
+                'hl1-h4':      'Distractions &amp; Risks',
+                'hl1-p':       'Distracted pedestrians and inattentive drivers pose serious risks that current systems cannot mitigate in real time.',
+                'hl2-h4':      'Discreet Wearables',
+                'hl2-p':       'Omi Glasses (camera, microphone, IMU), WristBand (IMU, vibration motor), and Smartphone (GPS, accelerometer) as context sensors.',
+                'hl3-h4':      'V2X Communication',
+                'hl3-p':       'Detected intentions are propagated in real time via ITS-G5 to vehicles and smart city infrastructure.',
                 'privacy-h4':  'Privacy &amp; GDPR Compliance',
                 'privacy-p':   'The data collected — including gestures and posture captured by Wearables — are <strong>anonymised at the source</strong>, before any transmission. The anonymised data are sent to a <strong>cloud infrastructure</strong> for processing by ML models, given the greater computational power available compared to a mobile device. No personally identifiable data is transmitted or stored externally. All data processing complies with the <strong>General Data Protection Regulation (GDPR)</strong>, ensuring the privacy and rights of participants at all stages of the project.',
                 'tasks-h2':    'Project Tasks',
-                'tasks-sub':   'Five integrated workstreams for a complete end-to-end solution.',
-                'task1-h4':    'Abstraction Layer',
-                'task1-p':     'Development of components to abstract collected data, making the system agnostic to different Wearable devices.',
-                'task2-h4':    'Multimodal Synchronisation',
-                'task2-p':     'Alignment of different data streams and correction of clock drift to create a unified real-time context.',
-                'task3-h4':    'Machine Learning',
-                'task3-p':     'Dataset collection and training of lightweight models for intent detection — such as "raise hand" or "change of direction".',
-                'task4-h4':    'Wearable Data Hub',
-                'task4-p':     'Android app for BLE/Wi-Fi discovery, data acquisition from Wearables, and transmission to the cloud for ML model execution.',
-                'task5-h4':    'V2X Integration',
-                'task5-p':     'Propagation of results to the smart city infrastructure and real-scenario tests with the PIXKIT vehicle.',
+                'tasks-sub':   'Four integrated workstreams for a complete end-to-end solution.',
+                'task1-h4':    'Data Extraction',
+                'task1-p':     'Characterisation and integration of Wearables (Omi Glasses, WristBand, Smartphone), development of the data acquisition module, and creation of training datasets.',
+                'task2-h4':    'Gateway &amp; Synchronisation',
+                'task2-p':     'Development of the Android mobile application as a central hub, capable of receiving and synchronising data streams from multiple Wearables simultaneously.',
+                'task3-h4':    'Processing &amp; Events',
+                'task3-p':     'Processing pipeline with ML models for simple event detection — such as crossing intention or distracted pedestrian — with decisions on execution location (edge vs cloud).',
+                'task4-h4':    'Exposure &amp; Feedback',
+                'task4-p':     'End-to-end demonstration with data visualisation, V2X communication via ATCLL, and real-time user feedback (visual and vibration alerts).',
                 'tech-h2':     'Technologies',
                 'tech-sub':    'Tools and protocols underpinning the solution.',
                 'tech1-p':     'Data Hub &amp; Mobile Dev',
                 'tech2-p':     'Wearable Communication',
-                'tech3-h4':    'XR Devices',
+                'tech3-h4':    'Wearables',
+                'tech3-p':     'Omi Glasses, WristBand, Smartphone',
                 'tech4-p':     'Vehicular Communications',
-                'tech5-p':     'Versioning &amp; Hosting',
+                'tech5-p':     'Versioning &amp; CI/CD',
                 'roadmap-h2':  'Project Roadmap',
                 'roadmap-sub': 'Our execution plan over the semester (Weeks 1 to 14).',
                 'm1-badge':    'M1 &nbsp;·&nbsp; Weeks 1–3',
@@ -1447,7 +1439,7 @@
                 'm2-p':        'Mobile application development, simultaneous streaming of multiple sensors, data stream synchronisation, and Elaboration report.',
                 'm3-badge':    'M3 &nbsp;·&nbsp; Weeks 7–9',
                 'm3-h4':       'Construction',
-                'm3-p':        'Cloud pipeline with ML models, V2X visualisation and communication via ATCLL, and first functional prototype with XR glasses (HoloLens / Meta Quest).',
+                'm3-p':        'Cloud pipeline with ML models, V2X visualisation and communication via ATCLL, and first functional prototype with Smart Glasses (Omi Glasses).',
                 'm4-badge':    'M4 &nbsp;·&nbsp; Weeks 10–14',
                 'm4-h4':       'Transition',
                 'm4-p':        'Real-time user feedback, complete End-to-End integration, real-world tests with the PIXKIT vehicle at ATCLL, final presentation, and DETI Students poster.',
@@ -1473,11 +1465,11 @@
                 'rel1-src':    'Universidade de Aveiro / IT',
                 'rel2-tag':    'Scientific Paper',
                 'rel2-h4':     'SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety',
-                'rel2-p':      'Augmented reality system integrated with V2X and ATCLL that provides collision warnings and virtual traffic lights for pedestrians via HoloLens 2. Study with 20 users. AutomotiveUI \'24, Stanford.',
+                'rel2-p':      'Augmented reality system integrated with V2X and ATCLL that provides collision warnings and virtual traffic lights for pedestrians via HoloLens 2. Validates VRU alert effectiveness — our project supplies the sensory data. AutomotiveUI \'24, Stanford.',
                 'rel2-src':    'Clérigo, Rito, Sargento et al. &mdash; 2024',
                 'rel3-tag':    'IEEE VNC 2025 Demo',
                 'rel3-h4':     'Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety',
-                'rel3-p':      'Demonstration of a mobile sensing hub (Android + HoloLens 2 + NVIDIA Jetson) integrated in ATCLL via ITS-G5. Real-time object detection with latency below 300 ms and V2X transmission. IEEE VNC 2025.',
+                'rel3-p':      'Core concept of VRU as sensor — we extend the approach to discreet wearables (Omi Glasses + WristBand). Mobile sensing hub (Android + HoloLens 2 + NVIDIA Jetson) integrated in ATCLL via ITS-G5, with real-time detection. IEEE VNC 2025.',
                 'rel3-src':    'G. Silva, Clérigo, Rito, Sargento &mdash; 2025',
                 'btn-read-more':'Read more',
                 'team-h2':     'Our Team',
