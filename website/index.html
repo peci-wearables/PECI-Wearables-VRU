@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wearables VRU | PECI 2025/26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ── Variáveis ─────────────────────────────────────── */
+        :root {
+            --primary:       #4a6580;
+            --primary-light: #6b8fad;
+            --primary-dim:   rgba(74, 101, 128, 0.12);
+            --secondary:     #6b7280;
+            --dark:          #1f2937;
+            --dark-soft:     #374151;
+            --light:         #f9fafb;
+            --light-mid:     #f3f4f6;
+            --border:        #e5e7eb;
+            --white:         #ffffff;
+            --shadow-sm:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md:     0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+            --shadow-lg:     0 12px 32px rgba(0,0,0,0.10);
+            --radius:        10px;
+            --transition:    0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ── Reset & Base ──────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.7;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; line-height: 1.3; }
+        a { text-decoration: none; color: var(--primary); }
+        img { display: block; max-width: 100%; }
+
+        /* ── Utilitários ───────────────────────────────────── */
+        .container { width: min(88%, 1140px); margin: 0 auto; }
+        section { padding: 100px 0; }
+        .bg-light { background: var(--light); }
+        .bg-mid   { background: var(--light-mid); }
+
+        /* ── Animações de entrada ──────────────────────────── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up.delay-1 { transition-delay: 0.10s; }
+        .fade-up.delay-2 { transition-delay: 0.20s; }
+        .fade-up.delay-3 { transition-delay: 0.30s; }
+        .fade-up.delay-4 { transition-delay: 0.40s; }
+        .fade-up.delay-5 { transition-delay: 0.50s; }
+
+        /* ── Barra de Navegação ────────────────────────────── */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(31, 41, 55, 0.97);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+            transition: padding var(--transition);
+        }
+        nav.scrolled { padding: 0.7rem 0; }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-logo {
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+        .nav-logo span { color: var(--primary-light); }
+        /* Right side of nav: links + lang btn + hamburger */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+        .nav-links a {
+            color: rgba(255,255,255,0.65);
+            padding: 5px 11px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-radius: 6px;
+            transition: background var(--transition), color var(--transition);
+            white-space: nowrap;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--white);
+            background: rgba(255,255,255,0.09);
+        }
+        /* Botão de idioma */
+        .lang-btn {
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.28);
+            color: rgba(255,255,255,0.80);
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 0.70rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1;
+        }
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.20);
+            color: var(--white);
+            border-color: rgba(255,255,255,0.45);
+        }
+        /* Hambúrguer (mobile) */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── Hero ──────────────────────────────────────────── */
+        header {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 24px;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(160deg, rgba(31,41,55,0.88) 0%, rgba(31,41,55,0.72) 100%),
+                url('https://images.unsplash.com/photo-1573400589886-f64fb47dc6a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')
+                center/cover no-repeat;
+            z-index: 0;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(31,41,55,0.4) 0%, transparent 60%);
+            z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 860px; }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(107, 143, 173, 0.25);
+            border: 1px solid rgba(107, 143, 173, 0.45);
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 28px;
+        }
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            margin-bottom: 22px;
+            letter-spacing: 0.5px;
+        }
+        header p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-weight: 300;
+            color: rgba(255,255,255,0.82);
+            max-width: 680px;
+            margin: 0 auto 42px;
+        }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(74,101,128,0.4);
+        }
+        .btn-primary:hover {
+            background: var(--dark-soft);
+            box-shadow: 0 6px 20px rgba(74,101,128,0.5);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: rgba(255,255,255,0.08);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+        .btn-sm {
+            padding: 8px 18px;
+            font-size: 0.78rem;
+        }
+        .btn-dark {
+            background: var(--dark);
+            color: var(--white);
+        }
+        .btn-dark:hover {
+            background: var(--dark-soft);
+            transform: translateY(-2px);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ── Título de Secção ──────────────────────────────── */
+        .section-title { text-align: center; margin-bottom: 64px; }
+        .section-title h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--dark);
+            margin-bottom: 14px;
+        }
+        .section-title p {
+            color: var(--secondary);
+            font-size: 0.97rem;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .title-bar {
+            width: 48px;
+            height: 3px;
+            background: var(--primary);
+            margin: 12px auto 16px;
+            border-radius: 2px;
+        }
+
+        /* ── Sobre / Problema ──────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text p {
+            color: var(--secondary);
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+        .about-text p strong { color: var(--dark); font-weight: 600; }
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .highlight-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 22px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .highlight-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            transform: translateX(4px);
+        }
+        .highlight-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: var(--primary-dim);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .highlight-card h4 { font-size: 0.95rem; margin-bottom: 4px; color: var(--dark); }
+        .highlight-card p  { font-size: 0.85rem; color: var(--secondary); margin: 0; }
+
+        /* ── Privacidade / RGPD ────────────────────────────── */
+        .privacy-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: var(--light-mid);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-top: 48px;
+        }
+        .privacy-banner i {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .privacy-banner .privacy-text h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+        .privacy-banner .privacy-text p {
+            font-size: 0.88rem;
+            color: var(--secondary);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── Tarefas ───────────────────────────────────────── */
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 24px;
+        }
+        .task-card {
+            padding: 36px 28px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .task-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform var(--transition);
+            transform-origin: left;
+        }
+        .task-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        .task-card:hover::before { transform: scaleX(1); }
+        .task-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--primary-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 22px;
+        }
+        .task-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        .task-card p { color: var(--secondary); font-size: 0.9rem; line-height: 1.65; }
+
+        /* Badge de milestone no Roadmap */
+        .milestone-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--primary-dim);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        /* ── Documentos & Entregáveis ──────────────────────── */
+        .docs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .doc-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .doc-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+        .doc-item.doc-soon {
+            opacity: 0.55;
+            pointer-events: none;
+        }
+        .doc-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: var(--primary-dim);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .doc-item.doc-soon .doc-icon {
+            background: var(--light-mid);
+            color: var(--secondary);
+        }
+        .doc-info { flex: 1; min-width: 0; }
+        .doc-info h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 3px; }
+        .doc-info p  { font-size: 0.82rem; color: var(--secondary); }
+        .doc-action { flex-shrink: 0; }
+        .badge-soon {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--light-mid);
+            color: var(--secondary);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        /* ── Trabalhos Relacionados ────────────────────────── */
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .related-card {
+            padding: 32px 28px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        .related-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        .tag-infra  { background: rgba(74,101,128,0.1);  color: #4a6580; }
+        .tag-proj   { background: rgba(55,65,81,0.1);    color: #374151; }
+        .tag-paper  { background: rgba(107,114,128,0.15); color: #4b5563; }
+        .related-card h4 { font-size: 1rem; color: var(--dark); line-height: 1.4; }
+        .related-card p  { font-size: 0.88rem; color: var(--secondary); line-height: 1.6; flex: 1; }
+        .related-card .related-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+        .related-source {
+            font-size: 0.78rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ── Tecnologias ───────────────────────────────────── */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 28px;
+        }
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 36px 20px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+        .tech-item i {
+            font-size: 2.6rem;
+            color: var(--dark-soft);
+            margin-bottom: 16px;
+            transition: color var(--transition);
+        }
+        .tech-item:hover i { color: var(--primary); }
+        .tech-item h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 6px; }
+        .tech-item p  { font-size: 0.82rem; color: var(--secondary); }
+
+        /* ── Equipa ────────────────────────────────────────── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .team-member {
+            text-align: center;
+            padding: 36px 20px 28px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .team-member:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        .team-member img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 18px;
+            border: 3px solid var(--border);
+            transition: border-color var(--transition);
+        }
+        .team-member:hover img { border-color: var(--primary-light); }
+        .team-member h4 { font-size: 1rem; margin-bottom: 4px; color: var(--dark); }
+        .team-member .role { font-size: 0.82rem; color: var(--secondary); margin-bottom: 18px; }
+        .social-links { display: flex; justify-content: center; gap: 10px; }
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 34px;
+            height: 34px;
+            background: var(--light-mid);
+            color: var(--dark-soft);
+            border-radius: 50%;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* ── Orientadores ──────────────────────────────────── */
+        .advisor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .advisor-card {
+            text-align: center;
+            padding: 32px 20px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .advisor-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        .advisor-card img {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 16px;
+            border: 3px solid var(--border);
+            filter: grayscale(20%);
+            transition: filter var(--transition);
+        }
+        .advisor-card:hover img { filter: grayscale(0%); }
+        .advisor-card h4 { font-size: 1rem; color: var(--dark); margin-bottom: 4px; }
+        .advisor-card p  { font-size: 0.82rem; color: var(--secondary); }
+        .advisor-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 3px 10px;
+            background: var(--primary-dim);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Rodapé ────────────────────────────────────────── */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.55);
+            padding: 52px 0 38px;
+        }
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        footer p { font-size: 0.85rem; line-height: 1.5; }
+        .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: rgba(255,255,255,0.12);
+            margin: 14px 0 10px;
+        }
+        /* Logos institucionais no rodapé */
+        .footer-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            width: 100%;
+        }
+        .inst-logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            opacity: 0.65;
+            transition: opacity var(--transition);
+        }
+        .inst-logo:hover { opacity: 1; }
+        /* Imagem quadrada (IT) */
+        .inst-logo-img {
+            height: 36px;
+            width: 36px;
+            border-radius: 6px;
+            object-fit: contain;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.08);
+            padding: 3px;
+        }
+        /* Imagem retangular (UA, NAP) */
+        .inst-logo-img-rect {
+            height: 36px;
+            width: auto;
+            max-width: 110px;
+            border-radius: 6px;
+            object-fit: contain;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.08);
+            padding: 3px;
+        }
+        .inst-logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            text-align: left;
+        }
+        .inst-logo-text strong {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+        }
+        .inst-logo-text span {
+            font-size: 0.68rem;
+            color: rgba(255,255,255,0.45);
+        }
+        .footer-sep {
+            width: 1px;
+            height: 30px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        /* ── Responsivo ────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(31,41,55,0.98);
+                flex-direction: column;
+                gap: 2px;
+                padding: 12px 16px 16px;
+                border-top: 1px solid rgba(255,255,255,0.06);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 0.82rem; padding: 9px 12px; }
+            .privacy-banner { flex-direction: column; gap: 14px; }
+            .footer-sep { display: none; }
+        }
+        @media (max-width: 500px) {
+            header h1 { font-size: 1.9rem; }
+            .docs-list { gap: 12px; }
+            .doc-item { flex-wrap: wrap; gap: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Barra de Navegação ──────────────────────────────── -->
+    <nav id="navbar">
+        <div class="nav-container container">
+            <a href="#page-top" class="nav-logo">PECI <span>|</span> Wearables VRU</a>
+            <div class="nav-right">
+                <div class="nav-links" id="navLinks">
+                    <a href="#about"   data-i18n="nav-about">Sobre</a>
+                    <a href="#tasks"   data-i18n="nav-tasks">Tarefas</a>
+                    <a href="#tech"    data-i18n="nav-tech">Tecnologias</a>
+                    <a href="#roadmap" data-i18n="nav-roadmap">Roadmap</a>
+                    <a href="#docs"    data-i18n="nav-docs">Documentos</a>
+                    <a href="#related" data-i18n="nav-related">Trabalhos Relacionados</a>
+                    <a href="#team"    data-i18n="nav-team">Equipa</a>
+                </div>
+                <button class="lang-btn" id="langToggle" aria-label="Switch language">EN</button>
+                <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── Hero ───────────────────────────────────────────── -->
+    <header id="page-top">
+        <div class="hero-content">
+            <div class="hero-badge">PECI 2025 / 2026 &nbsp;·&nbsp; Universidade de Aveiro</div>
+            <h1 data-i18n="hero-h1">Wearables Programáveis para<br>Perceção Humana</h1>
+            <p data-i18n="hero-p">Aquisição multimodal baseada em Wearables para garantir a segurança de peões e utilizadores vulneráveis (VRUs) em cidades inteligentes.</p>
+            <div class="hero-actions">
+                <a href="#about" class="btn btn-primary">
+                    <i class="fa-solid fa-arrow-down"></i> <span data-i18n="hero-cta1">Descobrir o Projeto</span>
+                </a>
+                <a href="#team" class="btn btn-outline">
+                    <i class="fa-solid fa-users"></i> <span data-i18n="hero-cta2">A Equipa</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <i class="fa-solid fa-chevron-down"></i>
+            <span data-i18n="hero-scroll">scroll</span>
+        </div>
+    </header>
+
+    <!-- ── Problema & Oportunidade ────────────────────────── -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="about-h2">Problema &amp; Oportunidade</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="about-sub">Porquê Wearables? Porque o utilizador vulnerável já está no centro do problema.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-text fade-up">
+                    <p data-i18n="about-p1">A procura por <strong>Cidades Inteligentes</strong> e condução autónoma está a crescer rapidamente. No entanto, os sistemas tradicionais baseados em infraestrutura — câmaras e radares fixos — revelam-se frequentemente insuficientes devido a <strong>cobertura limitada, pontos cegos e custos elevados</strong> de implementação e manutenção.</p>
+                    <p data-i18n="about-p2">O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Aproveitando os sensores presentes nos <strong>Wearables</strong> que já usamos quotidianamente, é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados.</p>
+                </div>
+                <div class="about-highlights fade-up delay-2">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fa-solid fa-eye-slash"></i></div>
+                        <div>
+                            <h4 data-i18n="hl1-h4">Pontos Cegos &amp; Cobertura</h4>
+                            <p data-i18n="hl1-p">Infraestrutura estática não cobre todos os cenários de risco urbano.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fa-solid fa-cloud"></i></div>
+                        <div>
+                            <h4 data-i18n="hl2-h4">Processamento na Cloud</h4>
+                            <p data-i18n="hl2-p">Dados anonimizados enviados para cloud com maior capacidade computacional para inferência dos modelos de ML.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+                        <div>
+                            <h4 data-i18n="hl3-h4">Integração V2X</h4>
+                            <p data-i18n="hl3-p">As intenções detetadas são propagadas em tempo real via ITS-G5.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aviso de Privacidade / RGPD -->
+            <div class="privacy-banner fade-up delay-3">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="privacy-text">
+                    <h4 data-i18n="privacy-h4">Privacidade &amp; Conformidade RGPD</h4>
+                    <p data-i18n="privacy-p">Os dados recolhidos — incluindo gestos e postura captados pelos Wearables — são <strong>anonimizados na origem</strong>, antes de qualquer transmissão. Os dados anonimizados são enviados para uma <strong>infraestrutura cloud</strong> para processamento pelos modelos de ML, dado o maior poder computacional disponível face ao dispositivo móvel. Nenhum dado pessoal identificável é transmitido ou armazenado externamente. Todo o tratamento de informação está em conformidade com o <strong>Regulamento Geral sobre a Proteção de Dados (RGPD / GDPR)</strong>, garantindo a privacidade e os direitos dos participantes em todas as fases do projeto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Tarefas ─────────────────────────────────────────── -->
+    <section id="tasks" class="bg-light">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="tasks-h2">Tarefas do Projeto</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="tasks-sub">Cinco frentes de trabalho integradas para uma solução completa de ponta a ponta.</p>
+            </div>
+            <div class="tasks-grid">
+
+                <div class="task-card fade-up delay-1">
+                    <div class="task-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h4 data-i18n="task1-h4">Camada de Abstração</h4>
+                    <p data-i18n="task1-p">Desenvolvimento de componentes para abstração dos dados recolhidos, tornando o sistema agnóstico a diferentes dispositivos Wearables.</p>
+                </div>
+
+                <div class="task-card fade-up delay-2">
+                    <div class="task-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h4 data-i18n="task2-h4">Sincronização Multimodal</h4>
+                    <p data-i18n="task2-p">Alinhamento de diferentes fluxos de dados e correção de desvios de relógio para criar um contexto unificado em tempo real.</p>
+                </div>
+
+                <div class="task-card fade-up delay-3">
+                    <div class="task-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h4 data-i18n="task3-h4">Machine Learning</h4>
+                    <p data-i18n="task3-p">Recolha de datasets e treino de modelos leves para deteção de intenções — como "levantar a mão" ou "mudança de direção".</p>
+                </div>
+
+                <div class="task-card fade-up delay-4">
+                    <div class="task-icon"><i class="fa-brands fa-android"></i></div>
+                    <h4 data-i18n="task4-h4">Wearable Data Hub</h4>
+                    <p data-i18n="task4-p">App Android para descoberta via BLE/Wi-Fi, aquisição de dados dos Wearables e envio para cloud para execução dos modelos de ML.</p>
+                </div>
+
+                <div class="task-card fade-up delay-5">
+                    <div class="task-icon"><i class="fa-solid fa-car-side"></i></div>
+                    <h4 data-i18n="task5-h4">Integração V2X</h4>
+                    <p data-i18n="task5-p">Propagação dos resultados para a infraestrutura da cidade inteligente e testes em cenário real com o veículo PIXKIT.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Tecnologias ─────────────────────────────────────── -->
+    <section id="tech">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="tech-h2">Tecnologias</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="tech-sub">Ferramentas e protocolos que sustentam a solução.</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item fade-up delay-1">
+                    <i class="fa-brands fa-android"></i>
+                    <h4>Android</h4>
+                    <p data-i18n="tech1-p">Data Hub &amp; Mobile Dev</p>
+                </div>
+                <div class="tech-item fade-up delay-2">
+                    <i class="fa-brands fa-bluetooth"></i>
+                    <h4>BLE &amp; Wi-Fi</h4>
+                    <p data-i18n="tech2-p">Comunicação Wearables</p>
+                </div>
+                <div class="tech-item fade-up delay-3">
+                    <i class="fa-solid fa-vr-cardboard"></i>
+                    <h4 data-i18n="tech3-h4">Equipamentos XR</h4>
+                    <p>Meta Quest, HoloLens, Omi</p>
+                </div>
+                <div class="tech-item fade-up delay-4">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <h4>ITS-G5</h4>
+                    <p data-i18n="tech4-p">Comunicações Veiculares</p>
+                </div>
+                <div class="tech-item fade-up delay-5">
+                    <i class="fa-brands fa-github"></i>
+                    <h4>GitHub</h4>
+                    <p data-i18n="tech5-p">Versionamento &amp; Hosting</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Roadmap ─────────────────────────────────────────── -->
+    <section id="roadmap" class="bg-light">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="roadmap-h2">Roadmap do Projeto</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="roadmap-sub">O nosso planeamento de execução ao longo do semestre (Semanas 1 a 14).</p>
+            </div>
+            <div class="tasks-grid">
+
+                <div class="task-card fade-up delay-1">
+                    <span class="milestone-badge" data-i18n="m1-badge">M1 &nbsp;·&nbsp; Semanas 1–3</span>
+                    <div class="task-icon"><i class="fa-solid fa-flag"></i></div>
+                    <h4 data-i18n="m1-h4">Inception</h4>
+                    <p data-i18n="m1-p">Levantamento de hardware disponível, comunicação inicial entre Wearable e telemóvel, e primeira integração com processamento na cloud.</p>
+                </div>
+
+                <div class="task-card fade-up delay-2">
+                    <span class="milestone-badge" data-i18n="m2-badge">M2 &nbsp;·&nbsp; Semanas 4–6</span>
+                    <div class="task-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <h4 data-i18n="m2-h4">Elaboration</h4>
+                    <p data-i18n="m2-p">Desenvolvimento da aplicação móvel, streaming simultâneo de múltiplos sensores, sincronização de fluxos de dados e elaboração do relatório de Elaboration.</p>
+                </div>
+
+                <div class="task-card fade-up delay-3">
+                    <span class="milestone-badge" data-i18n="m3-badge">M3 &nbsp;·&nbsp; Semanas 7–9</span>
+                    <div class="task-icon"><i class="fa-solid fa-code-merge"></i></div>
+                    <h4>Construction</h4>
+                    <p>Pipeline cloud com modelos de ML, visualização e e comunicação V2X via ATCLL, e primeiro protótipo funcional com os Smart Glasses (Omi Glasses).</p>
+                </div>
+
+                <div class="task-card fade-up delay-4">
+                    <span class="milestone-badge" data-i18n="m4-badge">M4 &nbsp;·&nbsp; Semanas 10–14</span>
+                    <div class="task-icon"><i class="fa-solid fa-check-double"></i></div>
+                    <h4 data-i18n="m4-h4">Transition</h4>
+                    <p data-i18n="m4-p">Feedback ao utilizador em tempo real, integração End-to-End completa, testes reais com o veículo PIXKIT no ATCLL, apresentação final e poster para DETI Students.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Documentos & Entregáveis ───────────────────────── -->
+    <section id="docs">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="docs-h2">Documentos &amp; Entregáveis</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="docs-sub">Acompanhe o nosso progresso através dos relatórios e apresentações.</p>
+            </div>
+            <div class="docs-list">
+
+                <div class="doc-item fade-up delay-1">
+                    <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="doc-info">
+                        <h4 data-i18n="doc1-h4">Apresentação M1 — Inception</h4>
+                        <p data-i18n="doc1-p">Apresentação inicial do projeto, contexto, equipa, arquitetura e plano de trabalho.</p>
+                    </div>
+                    <div class="doc-action">
+                        <a href="docs/Wearables-Programaveis-para-Percecao-Humana-Aquisicao-Multimodal-para-Seguranca-Rodoviaria.pdf" target="_blank" class="btn btn-sm btn-dark">
+                            <i class="fa-solid fa-download"></i> <span data-i18n="doc-download">Download PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="doc-item fade-up delay-2">
+                    <div class="doc-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="doc-info">
+                        <h4 data-i18n="doc2-h4">Proposta de Projeto — PECI 2025/26</h4>
+                        <p data-i18n="doc2-p">Documento de proposta oficial com descrição, objetivos, plano de trabalho e infraestrutura ATCLL.</p>
+                    </div>
+                    <div class="doc-action">
+                        <a href="docs/PECI_25_26 - Wearables Proposal.pdf" target="_blank" class="btn btn-sm btn-dark">
+                            <i class="fa-solid fa-download"></i> <span data-i18n="doc-download">Download PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="doc-item doc-soon fade-up delay-3">
+                    <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="doc-info">
+                        <h4 data-i18n="doc3-h4">Relatório M2 — Elaboration</h4>
+                        <p data-i18n="doc3-p">Relatório de requisitos, arquitetura e progresso da Elaboration.</p>
+                    </div>
+                    <div class="doc-action">
+                        <span class="badge-soon" data-i18n="badge-soon">Em breve</span>
+                    </div>
+                </div>
+
+                <div class="doc-item doc-soon fade-up delay-4">
+                    <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="doc-info">
+                        <h4 data-i18n="doc4-h4">Apresentação M3 — Construction</h4>
+                        <p data-i18n="doc4-p">Demonstração do protótipo e resultados da fase de Construction.</p>
+                    </div>
+                    <div class="doc-action">
+                        <span class="badge-soon" data-i18n="badge-soon">Em breve</span>
+                    </div>
+                </div>
+
+                <div class="doc-item doc-soon fade-up delay-5">
+                    <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="doc-info">
+                        <h4 data-i18n="doc5-h4">Poster M4 — DETI Students</h4>
+                        <p data-i18n="doc5-p">Poster científico apresentado no evento final DETI Students.</p>
+                    </div>
+                    <div class="doc-action">
+                        <span class="badge-soon" data-i18n="badge-soon">Em breve</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Trabalhos Relacionados ──────────────────────────── -->
+    <section id="related" class="bg-light">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="related-h2">Trabalhos Relacionados</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="related-sub">Projetos, infraestruturas e artigos que servem de base à nossa investigação.</p>
+            </div>
+            <div class="related-grid">
+
+                <div class="related-card fade-up delay-1">
+                    <span class="related-tag tag-infra" data-i18n="rel1-tag">Infraestrutura</span>
+                    <h4 data-i18n="rel1-h4">Aveiro Tech City Living Lab (ATCLL)</h4>
+                    <p data-i18n="rel1-p">Infraestrutura urbana de teste em Aveiro que integra comunicação V2X, ITS-G5 e Edge Computing, servindo de ambiente de validação para os resultados do projeto. Gerida pelo grupo NAP do Instituto de Telecomunicações.</p>
+                    <div class="related-footer">
+                        <span class="related-source">
+                            <i class="fa-solid fa-building-columns"></i> <span data-i18n="rel1-src">Universidade de Aveiro / IT</span>
+                        </span>
+                        <a href="docs/PECI_25_26 - Wearables Proposal.pdf" target="_blank" class="btn btn-sm btn-dark"><span data-i18n="btn-read-more">Ler mais</span></a>
+                    </div>
+                </div>
+
+                <div class="related-card fade-up delay-2">
+                    <span class="related-tag tag-paper" data-i18n="rel2-tag">Artigo Científico</span>
+                    <h4 data-i18n="rel2-h4">SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety</h4>
+                    <p data-i18n="rel2-p">Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Estudo com 20 utilizadores. AutomotiveUI '24, Stanford.</p>
+                    <div class="related-footer">
+                        <span class="related-source">
+                            <i class="fa-solid fa-book-open"></i> <span data-i18n="rel2-src">Clérigo, Rito, Sargento et al. &mdash; 2024</span>
+                        </span>
+                        <a href="docs/3640792.3675734.pdf" target="_blank" class="btn btn-sm btn-dark"><span data-i18n="btn-read-more">Ler mais</span></a>
+                    </div>
+                </div>
+
+                <div class="related-card fade-up delay-3">
+                    <span class="related-tag tag-paper" data-i18n="rel3-tag">Demo IEEE VNC 2025</span>
+                    <h4 data-i18n="rel3-h4">Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety</h4>
+                    <p data-i18n="rel3-p">Demonstração de um hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5. Deteção de objetos em tempo real com latência inferior a 300 ms e transmissão V2X. IEEE VNC 2025.</p>
+                    <div class="related-footer">
+                        <span class="related-source">
+                            <i class="fa-solid fa-book-open"></i> <span data-i18n="rel3-src">G. Silva, Clérigo, Rito, Sargento &mdash; 2025</span>
+                        </span>
+                        <a href="docs/Demo_Integrating_AR_headsets_with_Mobile_Object_Detection_to_extend_road_sensing_and_VRU_safety.pdf" target="_blank" class="btn btn-sm btn-dark"><span data-i18n="btn-read-more">Ler mais</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Equipa ──────────────────────────────────────────── -->
+    <section id="team">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="team-h2">A Nossa Equipa</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="team-sub">5 estudantes de Engenharia de Computadores e Informática — UA, 2025/26.</p>
+            </div>
+            <div class="team-grid">
+
+                <div class="team-member fade-up delay-1">
+                    <img src="https://ui-avatars.com/api/?name=Guilherme+Tavares&background=4a6580&color=fff&size=200&bold=true" alt="Guilherme Tavares">
+                    <h4>Guilherme Tavares</h4>
+                    <p class="role" data-i18n="team-role">Membro da Equipa</p>
+                    <div class="social-links">
+                        <a href="https://github.com/T4V4RES" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up delay-2">
+                    <img src="img/pedro_laredo.jpeg" alt="Pedro Laredo">
+                    <h4>Pedro Laredo</h4>
+                    <p class="role" data-i18n="team-role">Membro da Equipa</p>
+                    <div class="social-links">
+                        <a href="https://github.com/Pedro-Laredo" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up delay-3">
+                    <img src="https://ui-avatars.com/api/?name=Joao+Abrunhosa&background=4a6580&color=fff&size=200&bold=true" alt="João Abrunhosa">
+                    <h4>João Abrunhosa</h4>
+                    <p class="role" data-i18n="team-role">Membro da Equipa</p>
+                    <div class="social-links">
+                        <a href="https://github.com/JoaoAbrunhosa" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up delay-4">
+                    <img src="img/rafael_soares.png" alt="Rafael Soares">
+                    <h4>Rafael Soares</h4>
+                    <p class="role" data-i18n="team-role">Membro da Equipa</p>
+                    <div class="social-links">
+                        <a href="https://github.com/rafaelfelicianoS" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-member fade-up delay-5">
+                    <img src="https://ui-avatars.com/api/?name=Tomas+Cruz&background=4a6580&color=fff&size=200&bold=true" alt="Tomás Cruz">
+                    <h4>Tomás Cruz</h4>
+                    <p class="role" data-i18n="team-role">Membro da Equipa</p>
+                    <div class="social-links">
+                        <a href="https://github.com/TomasCruz39" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Orientadores ────────────────────────────────────── -->
+    <section id="advisors" class="bg-light">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="adv-h2">Orientadores</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="adv-sub">Investigadores que acompanham e orientam o projeto.</p>
+            </div>
+            <div class="advisor-grid">
+
+                <div class="advisor-card fade-up delay-1">
+                    <img src="https://ui-avatars.com/api/?name=Pedro+Rito&background=374151&color=fff&size=200&bold=true" alt="Pedro Rito">
+                    <h4>Pedro Rito</h4>
+                    <p>Universidade de Aveiro / IT</p>
+                    <span class="advisor-badge" data-i18n="adv-badge">Orientador</span>
+                </div>
+
+                <div class="advisor-card fade-up delay-2">
+                    <img src="https://ui-avatars.com/api/?name=Susana+Sargento&background=374151&color=fff&size=200&bold=true" alt="Susana Sargento">
+                    <h4>Susana Sargento</h4>
+                    <p>Universidade de Aveiro / IT</p>
+                    <span class="advisor-badge" data-i18n="adv-badge-f">Orientadora</span>
+                </div>
+
+                <div class="advisor-card fade-up delay-3">
+                    <img src="https://ui-avatars.com/api/?name=Andre+Clerigo&background=374151&color=fff&size=200&bold=true" alt="André Clérigo">
+                    <h4>André Clérigo</h4>
+                    <p>Instituto de Telecomunicações</p>
+                    <span class="advisor-badge" data-i18n="adv-badge">Orientador</span>
+                </div>
+
+                <div class="advisor-card fade-up delay-4">
+                    <img src="https://ui-avatars.com/api/?name=Goncalo+Silva&background=374151&color=fff&size=200&bold=true" alt="Gonçalo Silva">
+                    <h4>Gonçalo Silva</h4>
+                    <p>Instituto de Telecomunicações</p>
+                    <span class="advisor-badge" data-i18n="adv-badge">Orientador</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Rodapé ──────────────────────────────────────────── -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo">PECI | Wearables VRU</div>
+                <p data-i18n="footer-p1">Projeto de Engenharia de Computadores e Informática — 2025/2026</p>
+                <div class="footer-divider"></div>
+                <p data-i18n="footer-p2">© 2025/2026 &mdash; Todos os direitos reservados.</p>
+
+                <!-- Logos institucionais -->
+                <div class="footer-logos">
+                    <div class="inst-logo">
+                        <img src="img/ua.png" alt="Universidade de Aveiro" class="inst-logo-img-rect">
+                        <div class="inst-logo-text">
+                            <strong data-i18n="footer-ua-strong">Universidade de Aveiro</strong>
+                            <span data-i18n="footer-ua-span">DETI — Dep. Eletrónica e Telecomunicações</span>
+                        </div>
+                    </div>
+                    <div class="footer-sep"></div>
+                    <div class="inst-logo">
+                        <img src="img/it.png" alt="Instituto de Telecomunicações" class="inst-logo-img">
+                        <div class="inst-logo-text">
+                            <strong>Instituto de Telecomunicações</strong>
+                            <span data-i18n="footer-it-span">Pólo de Aveiro</span>
+                        </div>
+                    </div>
+                    <div class="footer-sep"></div>
+                    <div class="inst-logo">
+                        <img src="img/nap.png" alt="Grupo NAP" class="inst-logo-img-rect">
+                        <div class="inst-logo-text">
+                            <strong data-i18n="footer-nap-strong">Grupo NAP</strong>
+                            <span>Networks &amp; Applications — IT Aveiro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ── JavaScript ──────────────────────────────────────── -->
+    <script>
+        /* ── Traduções ──────────────────────────────────────── */
+        const i18n = {
+            pt: {
+                'nav-about':   'Sobre',
+                'nav-tasks':   'Tarefas',
+                'nav-tech':    'Tecnologias',
+                'nav-roadmap': 'Roadmap',
+                'nav-docs':    'Documentos',
+                'nav-related': 'Trabalhos Relacionados',
+                'nav-team':    'Equipa',
+                'hero-h1':     'Wearables Programáveis para<br>Perceção Humana',
+                'hero-p':      'Aquisição multimodal baseada em Wearables para garantir a segurança de peões e utilizadores vulneráveis (VRUs) em cidades inteligentes.',
+                'hero-cta1':   'Descobrir o Projeto',
+                'hero-cta2':   'A Equipa',
+                'hero-scroll': 'scroll',
+                'about-h2':    'Problema &amp; Oportunidade',
+                'about-sub':   'Porquê Wearables? Porque o utilizador vulnerável já está no centro do problema.',
+                'about-p1':    'A procura por <strong>Cidades Inteligentes</strong> e condução autónoma está a crescer rapidamente. No entanto, os sistemas tradicionais baseados em infraestrutura — câmaras e radares fixos — revelam-se frequentemente insuficientes devido a <strong>cobertura limitada, pontos cegos e custos elevados</strong> de implementação e manutenção.',
+                'about-p2':    'O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Aproveitando os sensores presentes nos <strong>Wearables</strong> que já usamos quotidianamente, é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados.',
+                'hl1-h4':      'Pontos Cegos &amp; Cobertura',
+                'hl1-p':       'Infraestrutura estática não cobre todos os cenários de risco urbano.',
+                'hl2-h4':      'Processamento na Cloud',
+                'hl2-p':       'Dados anonimizados enviados para cloud com maior capacidade computacional para inferência dos modelos de ML.',
+                'hl3-h4':      'Integração V2X',
+                'hl3-p':       'As intenções detetadas são propagadas em tempo real via ITS-G5.',
+                'privacy-h4':  'Privacidade &amp; Conformidade RGPD',
+                'privacy-p':   'Os dados recolhidos — incluindo gestos e postura captados pelos Wearables — são <strong>anonimizados na origem</strong>, antes de qualquer transmissão. Os dados anonimizados são enviados para uma <strong>infraestrutura cloud</strong> para processamento pelos modelos de ML, dado o maior poder computacional disponível face ao dispositivo móvel. Nenhum dado pessoal identificável é transmitido ou armazenado externamente. Todo o tratamento de informação está em conformidade com o <strong>Regulamento Geral sobre a Proteção de Dados (RGPD / GDPR)</strong>, garantindo a privacidade e os direitos dos participantes em todas as fases do projeto.',
+                'tasks-h2':    'Tarefas do Projeto',
+                'tasks-sub':   'Cinco frentes de trabalho integradas para uma solução completa de ponta a ponta.',
+                'task1-h4':    'Camada de Abstração',
+                'task1-p':     'Desenvolvimento de componentes para abstração dos dados recolhidos, tornando o sistema agnóstico a diferentes dispositivos Wearables.',
+                'task2-h4':    'Sincronização Multimodal',
+                'task2-p':     'Alinhamento de diferentes fluxos de dados e correção de desvios de relógio para criar um contexto unificado em tempo real.',
+                'task3-h4':    'Machine Learning',
+                'task3-p':     'Recolha de datasets e treino de modelos leves para deteção de intenções — como "levantar a mão" ou "mudança de direção".',
+                'task4-h4':    'Wearable Data Hub',
+                'task4-p':     'App Android para descoberta via BLE/Wi-Fi, aquisição de dados dos Wearables e envio para cloud para execução dos modelos de ML.',
+                'task5-h4':    'Integração V2X',
+                'task5-p':     'Propagação dos resultados para a infraestrutura da cidade inteligente e testes em cenário real com o veículo PIXKIT.',
+                'tech-h2':     'Tecnologias',
+                'tech-sub':    'Ferramentas e protocolos que sustentam a solução.',
+                'tech1-p':     'Data Hub &amp; Mobile Dev',
+                'tech2-p':     'Comunicação Wearables',
+                'tech3-h4':    'Equipamentos XR',
+                'tech4-p':     'Comunicações Veiculares',
+                'tech5-p':     'Versionamento &amp; Hosting',
+                'roadmap-h2':  'Roadmap do Projeto',
+                'roadmap-sub': 'O nosso planeamento de execução ao longo do semestre (Semanas 1 a 14).',
+                'm1-badge':    'M1 &nbsp;·&nbsp; Semanas 1–3',
+                'm1-h4':       'Inception',
+                'm1-p':        'Levantamento de hardware disponível, comunicação inicial entre Wearable e telemóvel, e primeira integração com processamento na cloud.',
+                'm2-badge':    'M2 &nbsp;·&nbsp; Semanas 4–6',
+                'm2-h4':       'Elaboration',
+                'm2-p':        'Desenvolvimento da aplicação móvel, streaming simultâneo de múltiplos sensores, sincronização de fluxos de dados e elaboração do relatório de Elaboration.',
+                'm3-badge':    'M3 &nbsp;·&nbsp; Semanas 7–9',
+                'm3-h4':       'Construction',
+                'm3-p':        'Pipeline cloud com modelos de ML, visualização e comunicação V2X via ATCLL, e primeiro protótipo funcional com os óculos XR (HoloLens / Meta Quest).',
+                'm4-badge':    'M4 &nbsp;·&nbsp; Semanas 10–14',
+                'm4-h4':       'Transition',
+                'm4-p':        'Feedback ao utilizador em tempo real, integração End-to-End completa, testes reais com o veículo PIXKIT no ATCLL, apresentação final e poster para DETI Students.',
+                'docs-h2':     'Documentos &amp; Entregáveis',
+                'docs-sub':    'Acompanhe o nosso progresso através dos relatórios e apresentações.',
+                'doc1-h4':     'Apresentação M1 — Inception',
+                'doc1-p':      'Apresentação inicial do projeto, contexto, equipa, arquitetura e plano de trabalho.',
+                'doc-download':'Download PDF',
+                'doc2-h4':     'Proposta de Projeto — PECI 2025/26',
+                'doc2-p':      'Documento de proposta oficial com descrição, objetivos, plano de trabalho e infraestrutura ATCLL.',
+                'doc3-h4':     'Relatório M2 — Elaboration',
+                'doc3-p':      'Relatório de requisitos, arquitetura e progresso da Elaboration.',
+                'doc4-h4':     'Apresentação M3 — Construction',
+                'doc4-p':      'Demonstração do protótipo e resultados da fase de Construction.',
+                'doc5-h4':     'Poster M4 — DETI Students',
+                'doc5-p':      'Poster científico apresentado no evento final DETI Students.',
+                'badge-soon':  'Em breve',
+                'related-h2':  'Trabalhos Relacionados',
+                'related-sub': 'Projetos, infraestruturas e artigos que servem de base à nossa investigação.',
+                'rel1-tag':    'Infraestrutura',
+                'rel1-h4':     'Aveiro Tech City Living Lab (ATCLL)',
+                'rel1-p':      'Infraestrutura urbana de teste em Aveiro que integra comunicação V2X, ITS-G5 e Edge Computing, servindo de ambiente de validação para os resultados do projeto. Gerida pelo grupo NAP do Instituto de Telecomunicações.',
+                'rel1-src':    'Universidade de Aveiro / IT',
+                'rel2-tag':    'Artigo Científico',
+                'rel2-h4':     'SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety',
+                'rel2-p':      'Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Estudo com 20 utilizadores. AutomotiveUI \'24, Stanford.',
+                'rel2-src':    'Clérigo, Rito, Sargento et al. &mdash; 2024',
+                'rel3-tag':    'Demo IEEE VNC 2025',
+                'rel3-h4':     'Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety',
+                'rel3-p':      'Demonstração de um hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5. Deteção de objetos em tempo real com latência inferior a 300 ms e transmissão V2X. IEEE VNC 2025.',
+                'rel3-src':    'G. Silva, Clérigo, Rito, Sargento &mdash; 2025',
+                'btn-read-more':'Ler mais',
+                'team-h2':     'A Nossa Equipa',
+                'team-sub':    '5 estudantes de Engenharia de Computadores e Informática — UA, 2025/26.',
+                'team-role':   'Membro da Equipa',
+                'adv-h2':      'Orientadores',
+                'adv-sub':     'Investigadores que acompanham e orientam o projeto.',
+                'adv-badge':   'Orientador',
+                'adv-badge-f': 'Orientadora',
+                'footer-p1':   'Projeto de Engenharia de Computadores e Informática — 2025/2026',
+                'footer-p2':   '© 2025/2026 &mdash; Todos os direitos reservados.',
+                'footer-ua-strong': 'Universidade de Aveiro',
+                'footer-ua-span':   'DETI — Dep. Eletrónica e Telecomunicações',
+                'footer-it-span':   'Pólo de Aveiro',
+                'footer-nap-strong':'Grupo NAP',
+            },
+            en: {
+                'nav-about':   'About',
+                'nav-tasks':   'Tasks',
+                'nav-tech':    'Technologies',
+                'nav-roadmap': 'Roadmap',
+                'nav-docs':    'Documents',
+                'nav-related': 'Related Work',
+                'nav-team':    'Team',
+                'hero-h1':     'Programmable Wearables for<br>Human Perception',
+                'hero-p':      'Multimodal Wearable-based acquisition to ensure the safety of pedestrians and vulnerable road users (VRUs) in smart cities.',
+                'hero-cta1':   'Discover the Project',
+                'hero-cta2':   'The Team',
+                'hero-scroll': 'scroll',
+                'about-h2':    'Problem &amp; Opportunity',
+                'about-sub':   'Why Wearables? Because the vulnerable user is already at the center of the problem.',
+                'about-p1':    'The demand for <strong>Smart Cities</strong> and autonomous driving is growing rapidly. However, traditional infrastructure-based systems — fixed cameras and radars — often prove insufficient due to <strong>limited coverage, blind spots, and high deployment and maintenance costs</strong>.',
+                'about-p2':    'Our project addresses this problem directly from the perspective of the vulnerable road user (pedestrian / cyclist). By leveraging the sensors already present in <strong>Wearables</strong> we use daily, it is possible to detect gestures, posture, and attention, converting them into "intentions" transmitted in real time to connected vehicles.',
+                'hl1-h4':      'Blind Spots &amp; Coverage',
+                'hl1-p':       'Static infrastructure does not cover all urban risk scenarios.',
+                'hl2-h4':      'Cloud Processing',
+                'hl2-p':       'Anonymised data sent to the cloud with greater computational capacity for ML model inference.',
+                'hl3-h4':      'V2X Integration',
+                'hl3-p':       'Detected intentions are propagated in real time via ITS-G5.',
+                'privacy-h4':  'Privacy &amp; GDPR Compliance',
+                'privacy-p':   'The data collected — including gestures and posture captured by Wearables — are <strong>anonymised at the source</strong>, before any transmission. The anonymised data are sent to a <strong>cloud infrastructure</strong> for processing by ML models, given the greater computational power available compared to a mobile device. No personally identifiable data is transmitted or stored externally. All data processing complies with the <strong>General Data Protection Regulation (GDPR)</strong>, ensuring the privacy and rights of participants at all stages of the project.',
+                'tasks-h2':    'Project Tasks',
+                'tasks-sub':   'Five integrated workstreams for a complete end-to-end solution.',
+                'task1-h4':    'Abstraction Layer',
+                'task1-p':     'Development of components to abstract collected data, making the system agnostic to different Wearable devices.',
+                'task2-h4':    'Multimodal Synchronisation',
+                'task2-p':     'Alignment of different data streams and correction of clock drift to create a unified real-time context.',
+                'task3-h4':    'Machine Learning',
+                'task3-p':     'Dataset collection and training of lightweight models for intent detection — such as "raise hand" or "change of direction".',
+                'task4-h4':    'Wearable Data Hub',
+                'task4-p':     'Android app for BLE/Wi-Fi discovery, data acquisition from Wearables, and transmission to the cloud for ML model execution.',
+                'task5-h4':    'V2X Integration',
+                'task5-p':     'Propagation of results to the smart city infrastructure and real-scenario tests with the PIXKIT vehicle.',
+                'tech-h2':     'Technologies',
+                'tech-sub':    'Tools and protocols underpinning the solution.',
+                'tech1-p':     'Data Hub &amp; Mobile Dev',
+                'tech2-p':     'Wearable Communication',
+                'tech3-h4':    'XR Devices',
+                'tech4-p':     'Vehicular Communications',
+                'tech5-p':     'Versioning &amp; Hosting',
+                'roadmap-h2':  'Project Roadmap',
+                'roadmap-sub': 'Our execution plan over the semester (Weeks 1 to 14).',
+                'm1-badge':    'M1 &nbsp;·&nbsp; Weeks 1–3',
+                'm1-h4':       'Inception',
+                'm1-p':        'Hardware survey, initial Wearable-to-phone communication, and first integration with cloud processing.',
+                'm2-badge':    'M2 &nbsp;·&nbsp; Weeks 4–6',
+                'm2-h4':       'Elaboration',
+                'm2-p':        'Mobile application development, simultaneous streaming of multiple sensors, data stream synchronisation, and Elaboration report.',
+                'm3-badge':    'M3 &nbsp;·&nbsp; Weeks 7–9',
+                'm3-h4':       'Construction',
+                'm3-p':        'Cloud pipeline with ML models, V2X visualisation and communication via ATCLL, and first functional prototype with XR glasses (HoloLens / Meta Quest).',
+                'm4-badge':    'M4 &nbsp;·&nbsp; Weeks 10–14',
+                'm4-h4':       'Transition',
+                'm4-p':        'Real-time user feedback, complete End-to-End integration, real-world tests with the PIXKIT vehicle at ATCLL, final presentation, and DETI Students poster.',
+                'docs-h2':     'Documents &amp; Deliverables',
+                'docs-sub':    'Follow our progress through reports and presentations.',
+                'doc1-h4':     'M1 Presentation — Inception',
+                'doc1-p':      'Initial project presentation: context, team, architecture, and work plan.',
+                'doc-download':'Download PDF',
+                'doc2-h4':     'Project Proposal — PECI 2025/26',
+                'doc2-p':      'Official proposal document with description, objectives, work plan, and ATCLL infrastructure.',
+                'doc3-h4':     'M2 Report — Elaboration',
+                'doc3-p':      'Requirements, architecture, and Elaboration progress report.',
+                'doc4-h4':     'M3 Presentation — Construction',
+                'doc4-p':      'Prototype demonstration and Construction phase results.',
+                'doc5-h4':     'M4 Poster — DETI Students',
+                'doc5-p':      'Scientific poster presented at the DETI Students final event.',
+                'badge-soon':  'Coming soon',
+                'related-h2':  'Related Work',
+                'related-sub': 'Projects, infrastructures, and papers that form the basis of our research.',
+                'rel1-tag':    'Infrastructure',
+                'rel1-h4':     'Aveiro Tech City Living Lab (ATCLL)',
+                'rel1-p':      'Urban test infrastructure in Aveiro integrating V2X communication, ITS-G5, and Edge Computing, serving as a validation environment for project results. Managed by the NAP group at the Instituto de Telecomunicações.',
+                'rel1-src':    'Universidade de Aveiro / IT',
+                'rel2-tag':    'Scientific Paper',
+                'rel2-h4':     'SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety',
+                'rel2-p':      'Augmented reality system integrated with V2X and ATCLL that provides collision warnings and virtual traffic lights for pedestrians via HoloLens 2. Study with 20 users. AutomotiveUI \'24, Stanford.',
+                'rel2-src':    'Clérigo, Rito, Sargento et al. &mdash; 2024',
+                'rel3-tag':    'IEEE VNC 2025 Demo',
+                'rel3-h4':     'Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety',
+                'rel3-p':      'Demonstration of a mobile sensing hub (Android + HoloLens 2 + NVIDIA Jetson) integrated in ATCLL via ITS-G5. Real-time object detection with latency below 300 ms and V2X transmission. IEEE VNC 2025.',
+                'rel3-src':    'G. Silva, Clérigo, Rito, Sargento &mdash; 2025',
+                'btn-read-more':'Read more',
+                'team-h2':     'Our Team',
+                'team-sub':    '5 Computer and Informatics Engineering students — UA, 2025/26.',
+                'team-role':   'Team Member',
+                'adv-h2':      'Advisors',
+                'adv-sub':     'Researchers supervising and guiding the project.',
+                'adv-badge':   'Supervisor',
+                'adv-badge-f': 'Supervisor',
+                'footer-p1':   'Computer and Informatics Engineering Project — 2025/2026',
+                'footer-p2':   '© 2025/2026 &mdash; All rights reserved.',
+                'footer-ua-strong': 'University of Aveiro',
+                'footer-ua-span':   'DETI — Dept. of Electronics and Telecommunications',
+                'footer-it-span':   'Aveiro Campus',
+                'footer-nap-strong':'NAP Group',
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'pt';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key] !== undefined) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+            langToggle.textContent = lang === 'pt' ? 'EN' : 'PT';
+            localStorage.setItem('lang', lang);
+        }
+
+        /* Scroll-reveal via IntersectionObserver */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.10 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        /* Hambúrguer */
+        const navToggle = document.getElementById('navToggle');
+        const navLinksEl = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('open');
+            navLinksEl.classList.toggle('open');
+        });
+        navLinksEl.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                navToggle.classList.remove('open');
+                navLinksEl.classList.remove('open');
+            });
+        });
+
+        /* Botão de idioma */
+        const langToggle = document.getElementById('langToggle');
+        langToggle.addEventListener('click', () => {
+            setLang(currentLang === 'pt' ? 'en' : 'pt');
+        });
+
+        /* Nav: compacta ao fazer scroll + realça link ativo */
+        const navbar   = document.getElementById('navbar');
+        const sections = document.querySelectorAll('section[id], header[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+            });
+            navLinks.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+        }, { passive: true });
+
+        /* Aplicar idioma guardado ao carregar a página */
+        if (currentLang === 'en') setLang('en');
+    </script>
+
+</body>
+</html>
