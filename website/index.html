@@ -97,14 +97,14 @@
             align-items: center;
             gap: 6px;
         }
-        .nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+        .nav-links { display: flex; gap: 2px; flex-wrap: nowrap; justify-content: flex-end; }
         .nav-links a {
             color: rgba(255,255,255,0.65);
-            padding: 5px 11px;
-            font-size: 0.78rem;
+            padding: 5px 8px;
+            font-size: 0.72rem;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.4px;
             border-radius: 6px;
             transition: background var(--transition), color var(--transition);
             white-space: nowrap;
@@ -292,7 +292,7 @@
         .section-title p {
             color: var(--secondary);
             font-size: 0.97rem;
-            max-width: 640px;
+            max-width: 540px;
             margin: 0 auto;
         }
         .title-bar {
@@ -449,6 +449,89 @@
             margin-bottom: 16px;
         }
 
+        /* Roadmap específico: 2×2 */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 700px) {
+            .roadmap-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Demo / Vídeo ──────────────────────────────────── */
+        .demo-section-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: stretch;
+        }
+        @media (max-width: 860px) {
+            .demo-section-inner { grid-template-columns: 1fr; }
+        }
+        .demo-video-wrap {
+            position: relative;
+            background: var(--dark);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--dark-soft);
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: rgba(255,255,255,0.4);
+        }
+        .demo-video-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .demo-video-placeholder i {
+            font-size: 3.5rem;
+            color: rgba(255,255,255,0.18);
+        }
+        .demo-video-placeholder p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+            max-width: 220px;
+            line-height: 1.5;
+        }
+        .demo-info {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            justify-content: center;
+        }
+        .demo-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+        .demo-info p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .demo-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .demo-badge {
+            padding: 5px 13px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary-dim);
+            color: var(--primary);
+            border: 1px solid rgba(74,101,128,0.2);
+        }
+
         /* ── Documentos & Entregáveis ──────────────────────── */
         .docs-list {
             display: flex;
@@ -563,8 +646,14 @@
         /* ── Tecnologias ───────────────────────────────────── */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 28px;
+        }
+        @media (max-width: 900px) {
+            .tech-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
         }
         .tech-item {
             display: flex;
@@ -622,6 +711,38 @@
             transition: border-color var(--transition);
         }
         .team-member:hover img { border-color: var(--primary-light); }
+        .avatar-initials {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 18px;
+            border: 3px solid var(--border);
+            letter-spacing: 1px;
+            transition: border-color var(--transition), background var(--transition);
+            flex-shrink: 0;
+        }
+        .team-member:hover .avatar-initials {
+            border-color: var(--primary-light);
+            background: var(--dark-soft);
+        }
+        .advisor-card .avatar-initials {
+            width: 84px;
+            height: 84px;
+            font-size: 1.3rem;
+            background: var(--dark-soft);
+            margin: 0 auto 16px;
+        }
+        .advisor-card:hover .avatar-initials {
+            background: var(--primary);
+        }
         .team-member h4 { font-size: 1rem; margin-bottom: 4px; color: var(--dark); }
         .team-member .role { font-size: 0.82rem; color: var(--secondary); margin-bottom: 18px; }
         .social-links { display: flex; justify-content: center; gap: 10px; }
@@ -777,6 +898,98 @@
             background: rgba(255,255,255,0.12);
         }
 
+        /* ── Implementação Técnica ─────────────────────────── */
+        .impl-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+        @media (max-width: 700px) {
+            .impl-grid { grid-template-columns: 1fr; }
+        }
+        .impl-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .impl-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .impl-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+        .impl-card:hover::before { opacity: 1; }
+        .impl-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .impl-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: var(--primary-dim);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .impl-icon.impl-icon-green  { background: rgba(16,185,129,0.1); color: #059669; }
+        .impl-icon.impl-icon-purple { background: rgba(139,92,246,0.1); color: #7c3aed; }
+        .impl-icon.impl-icon-amber  { background: rgba(245,158,11,0.1); color: #d97706; }
+        .impl-icon.impl-icon-blue   { background: rgba(59,130,246,0.1); color: #2563eb; }
+        .impl-card-title h4 { font-size: 1rem; color: var(--dark); margin-bottom: 3px; }
+        .impl-card-title span {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--secondary);
+        }
+        .impl-card p {
+            font-size: 0.88rem;
+            color: var(--secondary);
+            line-height: 1.65;
+            flex: 1;
+        }
+        .impl-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 4px;
+        }
+        .impl-tag {
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: var(--light-mid);
+            color: var(--dark-soft);
+            border: 1px solid var(--border);
+        }
+        .impl-tag.tag-green  { background: rgba(16,185,129,0.08); color: #059669; border-color: rgba(16,185,129,0.2); }
+        .impl-tag.tag-purple { background: rgba(139,92,246,0.08); color: #7c3aed; border-color: rgba(139,92,246,0.2); }
+        .impl-tag.tag-amber  { background: rgba(245,158,11,0.08); color: #d97706; border-color: rgba(245,158,11,0.2); }
+        .impl-tag.tag-blue   { background: rgba(59,130,246,0.08); color: #2563eb; border-color: rgba(59,130,246,0.2); }
+
         /* ── Responsivo ────────────────────────────────────── */
         @media (max-width: 900px) {
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -817,6 +1030,8 @@
                 <div class="nav-links" id="navLinks">
                     <a href="#about"   data-i18n="nav-about">Sobre</a>
                     <a href="#tasks"   data-i18n="nav-tasks">Tarefas</a>
+                    <a href="#impl"    data-i18n="nav-impl">Implementação</a>
+                    <a href="#demo"    data-i18n="nav-demo">Demo</a>
                     <a href="#tech"    data-i18n="nav-tech">Tecnologias</a>
                     <a href="#roadmap" data-i18n="nav-roadmap">Roadmap</a>
                     <a href="#docs"    data-i18n="nav-docs">Documentos</a>
@@ -836,7 +1051,7 @@
         <div class="hero-content">
             <div class="hero-badge">PECI 2025 / 2026 &nbsp;·&nbsp; Universidade de Aveiro</div>
             <h1 data-i18n="hero-h1">Wearables Programáveis para<br>Perceção Humana</h1>
-            <p data-i18n="hero-p">Aquisição multimodal baseada em Wearables para garantir a segurança rodoviária de peões e utilizadores vulneráveis da estrada (VRUs).</p>
+            <p data-i18n="hero-p">Aquisição multimodal baseada em Wearables para garantir a segurança de peões e utilizadores vulneráveis (VRUs) em cidades inteligentes.</p>
             <div class="hero-actions">
                 <a href="#about" class="btn btn-primary">
                     <i class="fa-solid fa-arrow-down"></i> <span data-i18n="hero-cta1">Descobrir o Projeto</span>
@@ -858,33 +1073,33 @@
             <div class="section-title fade-up">
                 <h2 data-i18n="about-h2">Problema &amp; Oportunidade</h2>
                 <div class="title-bar"></div>
-                <p data-i18n="about-sub">Distrações, ausência de alertas e falta de comunicação colocam peões e ciclistas em risco todos os dias.</p>
+                <p data-i18n="about-sub">Porquê Wearables? Porque o utilizador vulnerável já está no centro do problema.</p>
             </div>
             <div class="about-grid">
                 <div class="about-text fade-up">
-                    <p data-i18n="about-p1">A segurança rodoviária é comprometida por <strong>distrações do peão e do condutor</strong> e pela <strong>ausência de alertas atempados</strong>. O que falta hoje são alertas em tempo útil, feedback discreto ao utilizador e um sistema dinâmico, simples e acessível que não dependa exclusivamente de infraestrutura fixa.</p>
-                    <p data-i18n="about-p2">O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Utilizando <strong>Wearables discretos</strong> — Omi Glasses, WristBand e Smartphone — é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados via infraestrutura V2X.</p>
+                    <p data-i18n="about-p1">A procura por <strong>Cidades Inteligentes</strong> e condução autónoma está a crescer rapidamente. No entanto, os sistemas tradicionais baseados em infraestrutura — câmaras e radares fixos — revelam-se frequentemente insuficientes devido a <strong>cobertura limitada, pontos cegos e custos elevados</strong> de implementação e manutenção.</p>
+                    <p data-i18n="about-p2">O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Aproveitando os sensores presentes nos <strong>Wearables</strong> que já usamos quotidianamente, é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados.</p>
                 </div>
                 <div class="about-highlights fade-up delay-2">
                     <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="highlight-icon"><i class="fa-solid fa-eye-slash"></i></div>
                         <div>
-                            <h4 data-i18n="hl1-h4">Distrações &amp; Riscos</h4>
-                            <p data-i18n="hl1-p">Peões distraídos e condutores desatentos representam riscos graves que os sistemas atuais não conseguem mitigar em tempo real.</p>
+                            <h4 data-i18n="hl1-h4">Pontos Cegos &amp; Cobertura</h4>
+                            <p data-i18n="hl1-p">Infraestrutura estática não cobre todos os cenários de risco urbano.</p>
                         </div>
                     </div>
                     <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fa-solid fa-glasses"></i></div>
+                        <div class="highlight-icon"><i class="fa-solid fa-cloud"></i></div>
                         <div>
-                            <h4 data-i18n="hl2-h4">Wearables Discretos</h4>
-                            <p data-i18n="hl2-p">Omi Glasses (câmara, microfone, IMU), WristBand (IMU, motor de vibração) e Smartphone (GPS, acelerómetro) como sensores de contexto.</p>
+                            <h4 data-i18n="hl2-h4">Processamento na Cloud</h4>
+                            <p data-i18n="hl2-p">Dados anonimizados enviados para cloud com maior capacidade computacional para inferência dos modelos de ML.</p>
                         </div>
                     </div>
                     <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+                        <div class="highlight-icon"><i class="fa-solid fa-brain"></i></div>
                         <div>
-                            <h4 data-i18n="hl3-h4">Comunicação V2X</h4>
-                            <p data-i18n="hl3-p">As intenções detetadas são propagadas em tempo real via ITS-G5 para veículos e infraestrutura da cidade inteligente.</p>
+                            <h4 data-i18n="hl3-h4">Inferência de Intenções</h4>
+                            <p data-i18n="hl3-p">Modelos de ML leves detetam gestos, postura e atenção do utilizador em tempo real.</p>
                         </div>
                     </div>
                 </div>
@@ -907,32 +1122,100 @@
             <div class="section-title fade-up">
                 <h2 data-i18n="tasks-h2">Tarefas do Projeto</h2>
                 <div class="title-bar"></div>
-                <p data-i18n="tasks-sub">Quatro frentes de trabalho integradas para uma solução completa de ponta a ponta.</p>
+                <p data-i18n="tasks-sub">Cinco frentes de trabalho integradas para uma solução completa de ponta a ponta.</p>
             </div>
             <div class="tasks-grid">
 
                 <div class="task-card fade-up delay-1">
-                    <div class="task-icon"><i class="fa-solid fa-microchip"></i></div>
-                    <h4 data-i18n="task1-h4">Extração de Dados</h4>
-                    <p data-i18n="task1-p">Caracterização e integração dos Wearables (Omi Glasses, WristBand, Smartphone), desenvolvimento do módulo de aquisição de dados e criação de datasets para treino.</p>
+                    <div class="task-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h4 data-i18n="task1-h4">Camada de Abstração</h4>
+                    <p data-i18n="task1-p">Componentes para abstração dos dados de múltiplos wearables (omiGlass e Brilliant Sole) via BLE/Wi-Fi, com protocolo unificado, sincronização temporal por regressão linear e hub Android central.</p>
                 </div>
 
                 <div class="task-card fade-up delay-2">
-                    <div class="task-icon"><i class="fa-solid fa-shuffle"></i></div>
-                    <h4 data-i18n="task2-h4">Gateway e Sincronização</h4>
-                    <p data-i18n="task2-p">Desenvolvimento da aplicação móvel Android como hub central, capaz de receber e sincronizar fluxos de dados de múltiplos Wearables em simultâneo.</p>
+                    <div class="task-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h4 data-i18n="task2-h4">Perceção Visual</h4>
+                    <p data-i18n="task2-p">Deteção de objetos com <strong>yolov11</strong> e estimativa de profundidade monocular com <strong>Depth Anything V2</strong>, tanto on-device via ONNX Runtime como em backend Python com GPU para modelos de maior escala.</p>
                 </div>
 
                 <div class="task-card fade-up delay-3">
-                    <div class="task-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h4 data-i18n="task3-h4">Processamento e Eventos</h4>
-                    <p data-i18n="task3-p">Pipeline de processamento com modelos de ML para deteção de eventos simples — como intenção de travessia ou peão distraído — com decisão sobre local de execução (edge vs cloud).</p>
+                    <div class="task-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                    <h4 data-i18n="task3-h4">Áudio &amp; Voz</h4>
+                    <p data-i18n="task3-p">Pipeline de áudio Opus 16 kHz com jitter buffer, transcrição em tempo real com <strong>sherpa</strong> para comandos de voz, e síntese de alertas com <strong>TTS</strong> para feedback auditivo ao utilizador.</p>
                 </div>
 
                 <div class="task-card fade-up delay-4">
                     <div class="task-icon"><i class="fa-solid fa-bell"></i></div>
-                    <h4 data-i18n="task4-h4">Exposição e Feedback</h4>
-                    <p data-i18n="task4-p">Demonstração end-to-end com visualização dos dados, comunicação V2X via ATCLL e feedback em tempo real ao utilizador (alertas visuais e vibratórios).</p>
+                    <h4 data-i18n="task4-h4">Feedback Háptico</h4>
+                    <p data-i18n="task4-p">Notificações em tempo real no <strong>smartwatch</strong> via wifi: padrões de vibração distintos (proximidade, travessia, gesto) com o motor DRV2605 em modo waveformEffect e waveform customizado.</p>
+                </div>
+
+                <div class="task-card fade-up delay-5">
+                    <div class="task-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h4 data-i18n="task5-h4">Machine Learning</h4>
+                    <p data-i18n="task5-p">Recolha de datasets e treino de modelos leves para deteção de intenções do utilizador — gestos, postura e mudança de direção — para integração no pipeline de segurança rodoviária.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Implementação Técnica ──────────────────────────── -->
+    <section id="impl">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="impl-h2">Implementação Técnica</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="impl-sub">Pipelines de IA e integração de sensores implementados na aplicação e na cloud.</p>
+            </div>
+            <div class="impl-grid">
+
+                <!-- yolov11 + Depth Anything — On-Device -->
+                <div class="impl-card fade-up delay-1">
+                    <div class="impl-card-header">
+                        <div class="impl-icon impl-icon-green"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <div class="impl-card-title">
+                            <h4 data-i18n="impl1-h4">Deteção de Objetos &amp; Profundidade — On-Device</h4>
+                            <span data-i18n="impl1-sub">Android · ONNX Runtime</span>
+                        </div>
+                    </div>
+                    <p data-i18n="impl1-p">Pipeline local com <strong>yolov8n</strong> e <strong>Depth Anything V2</strong> via ONNX Runtime. As frames dos Omi Glasses são pré-processadas com letterbox e a distância métrica é estimada a partir dos bounding boxes e do mapa de profundidade.</p>
+                </div>
+
+                <!-- yolov11 + Depth Anything — Backend -->
+                <div class="impl-card fade-up delay-2">
+                    <div class="impl-card-header">
+                        <div class="impl-icon impl-icon-purple"><i class="fa-solid fa-server"></i></div>
+                        <div class="impl-card-title">
+                            <h4 data-i18n="impl2-h4">Deteção de Objetos &amp; Profundidade — Backend</h4>
+                            <span data-i18n="impl2-sub">Python · FastAPI · GPU</span>
+                        </div>
+                    </div>
+                    <p data-i18n="impl2-p">Versão servidor com modelos de maior escala rodando em GPU. As frames JPEG dos Omi Glasses são enviadas via HTTP ao backend Python, que executa <strong>yolov11</strong> e <strong>Depth Anything</strong> e devolve deteções e mapa de profundidade à aplicação.</p>
+                </div>
+
+                <!-- sherpa + TTS -->
+                <div class="impl-card fade-up delay-3">
+                    <div class="impl-card-header">
+                        <div class="impl-icon impl-icon-amber"><i class="fa-solid fa-microphone-lines"></i></div>
+                        <div class="impl-card-title">
+                            <h4 data-i18n="impl3-h4">Reconhecimento de Voz &amp; Síntese (sherpa + TTS)</h4>
+                            <span data-i18n="impl3-sub">Sherpa · TTS · Opus 16kHz</span>
+                        </div>
+                    </div>
+                    <p data-i18n="impl3-p">Áudio Opus 16 kHz dos Omi Glasses transcrito em tempo real com <strong>sherpa</strong> para comandos de voz hands-free. Alertas e instruções são sintetizados com <strong>TTS</strong>. O pipeline inclui jitter buffer e decoder µ-law/Opus para playback contínuo.</p>
+                </div>
+
+                <!-- Notificações no Smartwatch -->
+                <div class="impl-card fade-up delay-4">
+                    <div class="impl-card-header">
+                        <div class="impl-icon impl-icon-blue"><i class="fa-solid fa-bell"></i></div>
+                        <div class="impl-card-title">
+                            <h4 data-i18n="impl4-h4">Notificações no Smartwatch (Vibrações &amp; Sons)</h4>
+                            <span data-i18n="impl4-sub">Wifi</span>
+                        </div>
+                    </div>
+                    <p data-i18n="impl4-p">O <strong>smartwatch</strong> recebe alertas em tempo real, codificando alertas de proximidade, avisos de travessia e confirmações em padrões hápticos distintos.</p>
                 </div>
 
             </div>
@@ -959,19 +1242,34 @@
                     <p data-i18n="tech2-p">Comunicação Wearables</p>
                 </div>
                 <div class="tech-item fade-up delay-3">
-                    <i class="fa-solid fa-glasses"></i>
-                    <h4 data-i18n="tech3-h4">Wearables</h4>
-                    <p data-i18n="tech3-p">Omi Glasses, WristBand, Smartphone</p>
+                    <i class="fa-solid fa-vr-cardboard"></i>
+                    <h4 data-i18n="tech3-h4">Equipamentos XR</h4>
+                    <p>Meta Quest, HoloLens, Omi</p>
                 </div>
                 <div class="tech-item fade-up delay-4">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <h4>ITS-G5</h4>
-                    <p data-i18n="tech4-p">Comunicações Veiculares</p>
+                    <i class="fa-brands fa-github"></i>
+                    <h4>GitHub</h4>
+                    <p data-i18n="tech5-p">Versionamento &amp; Hosting</p>
                 </div>
                 <div class="tech-item fade-up delay-5">
-                    <i class="fa-brands fa-gitlab"></i>
-                    <h4>GitLab</h4>
-                    <p data-i18n="tech5-p">Versionamento &amp; CI/CD</p>
+                    <i class="fa-solid fa-brain"></i>
+                    <h4>yolov11 &amp; Depth Anything</h4>
+                    <p data-i18n="tech6-p">Deteção &amp; Profundidade</p>
+                </div>
+                <div class="tech-item fade-up delay-1">
+                    <i class="fa-solid fa-microphone"></i>
+                    <h4>sherpa &amp; TTS</h4>
+                    <p data-i18n="tech7-p">Voz &amp; Síntese</p>
+                </div>
+                <div class="tech-item fade-up delay-2">
+                    <i class="fa-solid fa-server"></i>
+                    <h4>Python Backend</h4>
+                    <p data-i18n="tech8-p">FastAPI &amp; GPU Inference</p>
+                </div>
+                <div class="tech-item fade-up delay-3">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h4>ONNX Runtime</h4>
+                    <p data-i18n="tech9-p">Inferência On-Device</p>
                 </div>
             </div>
         </div>
@@ -985,13 +1283,13 @@
                 <div class="title-bar"></div>
                 <p data-i18n="roadmap-sub">O nosso planeamento de execução ao longo do semestre (Semanas 1 a 14).</p>
             </div>
-            <div class="tasks-grid">
+            <div class="roadmap-grid">
 
                 <div class="task-card fade-up delay-1">
                     <span class="milestone-badge" data-i18n="m1-badge">M1 &nbsp;·&nbsp; Semanas 1–3</span>
                     <div class="task-icon"><i class="fa-solid fa-flag"></i></div>
                     <h4 data-i18n="m1-h4">Inception</h4>
-                    <p data-i18n="m1-p">Levantamento de hardware disponível, comunicação inicial entre Wearable e telemóvel, e primeira integração com processamento na cloud.</p>
+                    <p data-i18n="m1-p">Levantamento de hardware disponível, comunicação inicial entre Wearable e telemóvel, e primeiros testes de deteção de objetos e profundidade on-device.</p>
                 </div>
 
                 <div class="task-card fade-up delay-2">
@@ -1005,22 +1303,47 @@
                     <span class="milestone-badge" data-i18n="m3-badge">M3 &nbsp;·&nbsp; Semanas 7–9</span>
                     <div class="task-icon"><i class="fa-solid fa-code-merge"></i></div>
                     <h4 data-i18n="m3-h4">Construction</h4>
-                    <p data-i18n="m3-p">Pipeline cloud com modelos de ML, visualização e comunicação V2X via ATCLL, e primeiro protótipo funcional com os Smart Glasses (Omi Glasses).</p>
+                    <p data-i18n="m3-p">Pipeline backend com modelos ML em GPU, integração yolov11 + Depth Anything, sherpa/TTS, e primeiro protótipo funcional com os Omi Glasses e Brilliant Sole.</p>
                 </div>
 
                 <div class="task-card fade-up delay-4">
                     <span class="milestone-badge" data-i18n="m4-badge">M4 &nbsp;·&nbsp; Semanas 10–14</span>
                     <div class="task-icon"><i class="fa-solid fa-check-double"></i></div>
                     <h4 data-i18n="m4-h4">Transition</h4>
-                    <p data-i18n="m4-p">Feedback ao utilizador em tempo real, integração End-to-End completa, testes reais com o veículo PIXKIT no ATCLL, apresentação final e poster para DETI Students.</p>
+                    <p data-i18n="m4-p">Feedback háptico e auditivo ao utilizador em tempo real, integração End-to-End completa, testes reais com utilizadores, apresentação final e poster para DETI Students.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
+    <!-- ── Demo & Vídeo ───────────────────────────────────── -->
+    <section id="demo">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 data-i18n="demo-h2">Demo &amp; Protótipo</h2>
+                <div class="title-bar"></div>
+                <p data-i18n="demo-sub">Demonstração em vídeo do sistema em funcionamento.</p>
+            </div>
+            <div class="demo-section-inner fade-up">
+                <div class="demo-video-wrap">
+                    <!-- Substitui o src do iframe pelo URL do vídeo (YouTube embed, etc.) -->
+                    <iframe src="https://www.youtube.com/embed/B3Pfcj4uitg"></iframe>
+               
+                </div>
+                <div class="demo-info">
+                    <div>
+                        <h3 data-i18n="demo-title">Sistema em Ação</h3>
+                        <p data-i18n="demo-desc">Vê o sistema a funcionar na prática — um peão equipado com óculos inteligentes e uma pulseira a navegar num ambiente urbano com alertas em tempo real sobre o que o rodeia.</p>
+                    </div>
+         
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ── Documentos & Entregáveis ───────────────────────── -->
-    <section id="docs">
+    <section id="docs" class="bg-light">
         <div class="container">
             <div class="section-title fade-up">
                 <h2 data-i18n="docs-h2">Documentos &amp; Entregáveis</h2>
@@ -1032,8 +1355,8 @@
                 <div class="doc-item fade-up delay-1">
                     <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="doc-info">
-                        <h4 data-i18n="doc1-h4">Apresentação M1 — Inception</h4>
-                        <p data-i18n="doc1-p">Apresentação inicial do projeto, contexto, equipa, arquitetura e plano de trabalho.</p>
+                        <h4 data-i18n="doc0a-h4">Apresentação M1 — Inception</h4>
+                        <p data-i18n="doc0a-p">Apresentação inicial do projeto, contexto, equipa, arquitetura e plano de trabalho.</p>
                     </div>
                     <div class="doc-action">
                         <a href="docs/Wearables-Programaveis-para-Percecao-Humana-Aquisicao-Multimodal-para-Seguranca-Rodoviaria.pdf" target="_blank" class="btn btn-sm btn-dark">
@@ -1043,10 +1366,10 @@
                 </div>
 
                 <div class="doc-item fade-up delay-2">
-                    <div class="doc-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="doc-info">
-                        <h4 data-i18n="doc2-h4">Proposta de Projeto — PECI 2025/26</h4>
-                        <p data-i18n="doc2-p">Documento de proposta oficial com descrição, objetivos, plano de trabalho e infraestrutura ATCLL.</p>
+                        <h4 data-i18n="doc0b-h4">Proposta de Projeto — PECI 2025/26</h4>
+                        <p data-i18n="doc0b-p">Documento de proposta oficial com descrição, objetivos, plano de trabalho e infraestrutura ATCLL.</p>
                     </div>
                     <div class="doc-action">
                         <a href="docs/PECI_25_26 - Wearables Proposal.pdf" target="_blank" class="btn btn-sm btn-dark">
@@ -1055,38 +1378,73 @@
                     </div>
                 </div>
 
-                <div class="doc-item doc-soon fade-up delay-3">
+                <div class="doc-item fade-up delay-1">
                     <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="doc-info">
-                        <h4 data-i18n="doc3-h4">Relatório M2 — Elaboration</h4>
-                        <p data-i18n="doc3-p">Relatório de requisitos, arquitetura e progresso da Elaboration.</p>
+                        <h4 data-i18n="doc1-h4">Apresentação M2 — Elaboration</h4>
+                        <p data-i18n="doc1-p">Slides da apresentação da fase de Elaboration: arquitetura, integração BLE e primeiros resultados.</p>
                     </div>
                     <div class="doc-action">
-                        <span class="badge-soon" data-i18n="badge-soon">Em breve</span>
+                        <a href="docs/Apresentacao M2.pdf" target="_blank" class="btn btn-sm btn-dark">
+                            <i class="fa-solid fa-download"></i> <span data-i18n="doc-download">Download PDF</span>
+                        </a>
                     </div>
                 </div>
 
-                <div class="doc-item doc-soon fade-up delay-4">
+                <div class="doc-item fade-up delay-2">
                     <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="doc-info">
-                        <h4 data-i18n="doc4-h4">Apresentação M3 — Construction</h4>
-                        <p data-i18n="doc4-p">Demonstração do protótipo e resultados da fase de Construction.</p>
+                        <h4 data-i18n="doc2-h4">Apresentação M3 — Construction</h4>
+                        <p data-i18n="doc2-p">Slides da demonstração do protótipo funcional e resultados da fase de Construction.</p>
                     </div>
                     <div class="doc-action">
-                        <span class="badge-soon" data-i18n="badge-soon">Em breve</span>
+                        <a href="docs/Apresentacao M3.pdf" target="_blank" class="btn btn-sm btn-dark">
+                            <i class="fa-solid fa-download"></i> <span data-i18n="doc-download">Download PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="doc-item fade-up delay-3    ">
+                    <div class="doc-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="doc-info">
+                        <h4 data-i18n="doc3-h4">Apresentação Final — M4 Transition</h4>
+                        <p data-i18n="doc3-p">Slides da apresentação final com integração End-to-End completa e resultados dos testes.</p>
+                    </div>
+                    <div class="doc-action">
+                        <a href="docs/Apresentacao M4.pdf" target="_blank" class="btn btn-sm btn-dark">
+                            <i class="fa-solid fa-download"></i> <span data-i18n="doc-download">Download PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="doc-item fade-up delay-1">
+                    <div class="doc-icon"><i class="fa-solid fa-image"></i></div>
+                    <div class="doc-info">
+                        <h4 data-i18n="doc4-h4">Poster — DETI Students</h4>
+                        <p data-i18n="doc4-p">Poster científico apresentado no evento final DETI Students.</p>
+                    </div>
+                    <div class="doc-action">
+                        <a href="docs/ST2026-Students-Programmable Wearables.pdf" target="_blank" class="btn btn-sm btn-dark">
+                            <i class="fa-solid fa-download"></i> <span data-i18n="doc-download">Download PDF</span>
+                        </a>
                     </div>
                 </div>
 
                 <div class="doc-item doc-soon fade-up delay-5">
                     <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="doc-info">
-                        <h4 data-i18n="doc5-h4">Poster M4 — DETI Students</h4>
-                        <p data-i18n="doc5-p">Poster científico apresentado no evento final DETI Students.</p>
+                        <h4 data-i18n="doc5-h4">Relatório Final</h4>
+                        <p data-i18n="doc5-p">Relatório final do projeto com descrição completa da arquitetura, implementação, resultados e conclusões.</p>
                     </div>
                     <div class="doc-action">
+                        <!-- <a href="docs/Final_Report.pdf" target="_blank" class="btn btn-sm btn-dark">
+                            <i class="fa-solid fa-download"></i> <span data-i18n="doc-download">Download PDF</span>
+                        </a> -->
                         <span class="badge-soon" data-i18n="badge-soon">Em breve</span>
                     </div>
                 </div>
+
+                                
 
             </div>
         </div>
@@ -1117,7 +1475,7 @@
                 <div class="related-card fade-up delay-2">
                     <span class="related-tag tag-paper" data-i18n="rel2-tag">Artigo Científico</span>
                     <h4 data-i18n="rel2-h4">SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety</h4>
-                    <p data-i18n="rel2-p">Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Valida a eficácia de alertas ao VRU — o nosso projeto fornece os dados sensoriais. AutomotiveUI '24, Stanford.</p>
+                    <p data-i18n="rel2-p">Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Estudo com 20 utilizadores. AutomotiveUI '24, Stanford.</p>
                     <div class="related-footer">
                         <span class="related-source">
                             <i class="fa-solid fa-book-open"></i> <span data-i18n="rel2-src">Clérigo, Rito, Sargento et al. &mdash; 2024</span>
@@ -1129,7 +1487,7 @@
                 <div class="related-card fade-up delay-3">
                     <span class="related-tag tag-paper" data-i18n="rel3-tag">Demo IEEE VNC 2025</span>
                     <h4 data-i18n="rel3-h4">Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety</h4>
-                    <p data-i18n="rel3-p">Conceito base do VRU como sensor — estendemos a abordagem para wearables discretos (Omi Glasses + WristBand). Hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5, com deteção em tempo real. IEEE VNC 2025.</p>
+                    <p data-i18n="rel3-p">Demonstração de um hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL. Deteção de objetos em tempo real com latência inferior a 300 ms. IEEE VNC 2025.</p>
                     <div class="related-footer">
                         <span class="related-source">
                             <i class="fa-solid fa-book-open"></i> <span data-i18n="rel3-src">G. Silva, Clérigo, Rito, Sargento &mdash; 2025</span>
@@ -1153,7 +1511,7 @@
             <div class="team-grid">
 
                 <div class="team-member fade-up delay-1">
-                    <img src="img/tavares.jpg" alt="Guilherme Tavares">
+                    <div class="avatar-initials">GT</div>
                     <h4>Guilherme Tavares</h4>
                     <p class="role" data-i18n="team-role">Membro da Equipa</p>
                     <div class="social-links">
@@ -1171,7 +1529,7 @@
                 </div>
 
                 <div class="team-member fade-up delay-3">
-                    <img src="img/joao_abrunhosa.jpg" alt="João Abrunhosa">
+                    <div class="avatar-initials">JA</div>
                     <h4>João Abrunhosa</h4>
                     <p class="role" data-i18n="team-role">Membro da Equipa</p>
                     <div class="social-links">
@@ -1189,7 +1547,7 @@
                 </div>
 
                 <div class="team-member fade-up delay-5">
-                    <img src="img/tomas_cruz.jpg" alt="Tomás Cruz">
+                    <div class="avatar-initials">TC</div>
                     <h4>Tomás Cruz</h4>
                     <p class="role" data-i18n="team-role">Membro da Equipa</p>
                     <div class="social-links">
@@ -1212,28 +1570,28 @@
             <div class="advisor-grid">
 
                 <div class="advisor-card fade-up delay-1">
-                    <img src="https://ui-avatars.com/api/?name=Pedro+Rito&background=374151&color=fff&size=200&bold=true" alt="Pedro Rito">
+                    <div class="avatar-initials">PR</div>
                     <h4>Pedro Rito</h4>
                     <p>Universidade de Aveiro / IT</p>
                     <span class="advisor-badge" data-i18n="adv-badge">Orientador</span>
                 </div>
 
                 <div class="advisor-card fade-up delay-2">
-                    <img src="https://ui-avatars.com/api/?name=Susana+Sargento&background=374151&color=fff&size=200&bold=true" alt="Susana Sargento">
+                    <div class="avatar-initials">SS</div>
                     <h4>Susana Sargento</h4>
                     <p>Universidade de Aveiro / IT</p>
                     <span class="advisor-badge" data-i18n="adv-badge-f">Orientadora</span>
                 </div>
 
                 <div class="advisor-card fade-up delay-3">
-                    <img src="https://ui-avatars.com/api/?name=Andre+Clerigo&background=374151&color=fff&size=200&bold=true" alt="André Clérigo">
+                    <div class="avatar-initials">AC</div>
                     <h4>André Clérigo</h4>
                     <p>Instituto de Telecomunicações</p>
                     <span class="advisor-badge" data-i18n="adv-badge">Orientador</span>
                 </div>
 
                 <div class="advisor-card fade-up delay-4">
-                    <img src="https://ui-avatars.com/api/?name=Goncalo+Silva&background=374151&color=fff&size=200&bold=true" alt="Gonçalo Silva">
+                    <div class="avatar-initials">GS</div>
                     <h4>Gonçalo Silva</h4>
                     <p>Instituto de Telecomunicações</p>
                     <span class="advisor-badge" data-i18n="adv-badge">Orientador</span>
@@ -1289,74 +1647,105 @@
             pt: {
                 'nav-about':   'Sobre',
                 'nav-tasks':   'Tarefas',
+                'nav-impl':    'Implementação',
+                'nav-demo':    'Demo',
                 'nav-tech':    'Tecnologias',
                 'nav-roadmap': 'Roadmap',
                 'nav-docs':    'Documentos',
                 'nav-related': 'Trabalhos Relacionados',
                 'nav-team':    'Equipa',
                 'hero-h1':     'Wearables Programáveis para<br>Perceção Humana',
-                'hero-p':      'Aquisição multimodal baseada em Wearables para garantir a segurança rodoviária de peões e utilizadores vulneráveis da estrada (VRUs).',
+                'hero-p':      'Aquisição multimodal baseada em Wearables para garantir a segurança de peões e utilizadores vulneráveis (VRUs) em cidades inteligentes.',
                 'hero-cta1':   'Descobrir o Projeto',
                 'hero-cta2':   'A Equipa',
                 'hero-scroll': 'scroll',
                 'about-h2':    'Problema &amp; Oportunidade',
-                'about-sub':   'Distrações, ausência de alertas e falta de comunicação colocam peões e ciclistas em risco todos os dias.',
-                'about-p1':    'A segurança rodoviária é comprometida por <strong>distrações do peão e do condutor</strong> e pela <strong>ausência de alertas atempados</strong>. O que falta hoje são alertas em tempo útil, feedback discreto ao utilizador e um sistema dinâmico, simples e acessível que não dependa exclusivamente de infraestrutura fixa.',
-                'about-p2':    'O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Utilizando <strong>Wearables discretos</strong> — Omi Glasses, WristBand e Smartphone — é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados via infraestrutura V2X.',
-                'hl1-h4':      'Distrações &amp; Riscos',
-                'hl1-p':       'Peões distraídos e condutores desatentos representam riscos graves que os sistemas atuais não conseguem mitigar em tempo real.',
-                'hl2-h4':      'Wearables Discretos',
-                'hl2-p':       'Omi Glasses (câmara, microfone, IMU), WristBand (IMU, motor de vibração) e Smartphone (GPS, acelerómetro) como sensores de contexto.',
-                'hl3-h4':      'Comunicação V2X',
-                'hl3-p':       'As intenções detetadas são propagadas em tempo real via ITS-G5 para veículos e infraestrutura da cidade inteligente.',
+                'about-sub':   'Porquê Wearables? Porque o utilizador vulnerável já está no centro do problema.',
+                'about-p1':    'A procura por <strong>Cidades Inteligentes</strong> e condução autónoma está a crescer rapidamente. No entanto, os sistemas tradicionais baseados em infraestrutura — câmaras e radares fixos — revelam-se frequentemente insuficientes devido a <strong>cobertura limitada, pontos cegos e custos elevados</strong> de implementação e manutenção.',
+                'about-p2':    'O nosso projeto aborda este problema diretamente a partir da perspetiva do utilizador vulnerável (peão / ciclista). Aproveitando os sensores presentes nos <strong>Wearables</strong> que já usamos quotidianamente, é possível detetar gestos, postura e atenção, convertendo-os em "intenções" transmitidas em tempo real para os veículos conectados.',
+                'hl1-h4':      'Pontos Cegos &amp; Cobertura',
+                'hl1-p':       'Infraestrutura estática não cobre todos os cenários de risco urbano.',
+                'hl2-h4':      'Processamento na Cloud',
+                'hl2-p':       'Dados anonimizados enviados para cloud com maior capacidade computacional para inferência dos modelos de ML.',
+                'hl3-h4':      'Inferência de Intenções',
+                'hl3-p':       'Modelos de ML leves detetam gestos, postura e atenção do utilizador em tempo real.',
                 'privacy-h4':  'Privacidade &amp; Conformidade RGPD',
                 'privacy-p':   'Os dados recolhidos — incluindo gestos e postura captados pelos Wearables — são <strong>anonimizados na origem</strong>, antes de qualquer transmissão. Os dados anonimizados são enviados para uma <strong>infraestrutura cloud</strong> para processamento pelos modelos de ML, dado o maior poder computacional disponível face ao dispositivo móvel. Nenhum dado pessoal identificável é transmitido ou armazenado externamente. Todo o tratamento de informação está em conformidade com o <strong>Regulamento Geral sobre a Proteção de Dados (RGPD / GDPR)</strong>, garantindo a privacidade e os direitos dos participantes em todas as fases do projeto.',
                 'tasks-h2':    'Tarefas do Projeto',
-                'tasks-sub':   'Quatro frentes de trabalho integradas para uma solução completa de ponta a ponta.',
-                'task1-h4':    'Extração de Dados',
-                'task1-p':     'Caracterização e integração dos Wearables (Omi Glasses, WristBand, Smartphone), desenvolvimento do módulo de aquisição de dados e criação de datasets para treino.',
-                'task2-h4':    'Gateway e Sincronização',
-                'task2-p':     'Desenvolvimento da aplicação móvel Android como hub central, capaz de receber e sincronizar fluxos de dados de múltiplos Wearables em simultâneo.',
-                'task3-h4':    'Processamento e Eventos',
-                'task3-p':     'Pipeline de processamento com modelos de ML para deteção de eventos simples — como intenção de travessia ou peão distraído — com decisão sobre local de execução (edge vs cloud).',
-                'task4-h4':    'Exposição e Feedback',
-                'task4-p':     'Demonstração end-to-end com visualização dos dados, comunicação V2X via ATCLL e feedback em tempo real ao utilizador (alertas visuais e vibratórios).',
+                'tasks-sub':   'Cinco frentes de trabalho integradas para uma solução completa de ponta a ponta.',
+                'task1-h4':    'Camada de Abstração',
+                'task1-p':     'Componentes para abstração dos dados de múltiplos wearables (omiGlass e Brilliant Sole) via BLE/Wi-Fi, com protocolo unificado, sincronização temporal por regressão linear e hub Android central.',
+                'task2-h4':    'Perceção Visual',
+                'task2-p':     'Deteção de objetos com <strong>yolov11</strong> e estimativa de profundidade monocular com <strong>Depth Anything V2</strong>, tanto on-device via ONNX Runtime como em backend Python com GPU.',
+                'task3-h4':    'Áudio &amp; Voz',
+                'task3-p':     'Pipeline de áudio Opus 16 kHz com jitter buffer, transcrição em tempo real com <strong>sherpa</strong> para comandos de voz, e síntese de alertas com <strong>TTS</strong>.',
+                'task4-h4':    'Feedback Háptico',
+                'task4-p':     'Notificações em tempo real no <strong>Brilliant Sole</strong> via BLE TX/RX: padrões de vibração distintos com motor DRV2605 em modo waveformEffect e waveform customizado.',
+                'task5-h4':    'Machine Learning',
+                'task5-p':     'Recolha de datasets e treino de modelos leves para deteção de intenções do utilizador — gestos, postura e mudança de direção.',
+                'impl-h2':     'Implementação Técnica',
+                'impl-sub':    'Pipelines de IA e integração de sensores implementados na aplicação e na cloud.',
+                'impl1-h4':    'Deteção de Objetos &amp; Profundidade — On-Device',
+                'impl1-sub':   'Android · ONNX Runtime',
+                'impl1-p':     'Pipeline local com <strong>yolov11n</strong> e <strong>Depth Anything V2</strong> via ONNX Runtime. As frames dos Omi Glasses são pré-processadas com letterbox e a distância métrica é estimada a partir dos bounding boxes e do mapa de profundidade.',
+                'impl2-h4':    'Deteção de Objetos &amp; Profundidade — Backend',
+                'impl2-sub':   'Python · FastAPI · GPU',
+                'impl2-p':     'Versão servidor com modelos de maior escala em GPU. As frames JPEG dos Omi Glasses são enviadas via HTTP ao backend Python, que executa <strong>yolov11</strong> e <strong>Depth Anything</strong> com maior precisão e devolve deteções e mapa de profundidade à aplicação.',
+                'impl3-h4':    'Reconhecimento de Voz &amp; Síntese (sherpa + TTS)',
+                'impl3-sub':   ' sherpa · TTS · Opus 16kHz',
+                'impl3-p':     'Áudio Opus 16 kHz dos Omi Glasses transcrito em tempo real com <strong>sherpa</strong> para comandos de voz hands-free. Alertas e instruções são sintetizados com <strong>TTS</strong>. O pipeline inclui jitter buffer e decoder µ-law/Opus para playback contínuo.',
+                'impl4-h4':    'Notificações no Smartwatch (Vibrações &amp; Sons)',
+                'impl4-sub':   'Brilliant Sole · DRV2605 · BLE TX/RX',
+                'impl4-p':     'O <strong>Brilliant Sole</strong> recebe alertas em tempo real via BLE. O motor <strong>DRV2605</strong> é acionado em modo <strong>waveformEffect</strong> (efeitos predefinidos) ou <strong>waveform</strong> (amplitude e duração customizadas), codificando alertas de proximidade, avisos de travessia e confirmações em padrões hápticos distintos.',
+                'tech6-p':     'Deteção &amp; Profundidade',
+                'tech7-p':     'Voz &amp; Síntese',
+                'tech8-p':     'FastAPI &amp; GPU Inference',
+                'tech9-p':     'Inferência On-Device',
                 'tech-h2':     'Tecnologias',
                 'tech-sub':    'Ferramentas e protocolos que sustentam a solução.',
                 'tech1-p':     'Data Hub &amp; Mobile Dev',
                 'tech2-p':     'Comunicação Wearables',
-                'tech3-h4':    'Wearables',
-                'tech3-p':     'Omi Glasses, WristBand, Smartphone',
+                'tech3-h4':    'Equipamentos XR',
                 'tech4-p':     'Comunicações Veiculares',
-                'tech5-p':     'Versionamento &amp; CI/CD',
+                'tech5-p':     'Versionamento &amp; Hosting',
                 'roadmap-h2':  'Roadmap do Projeto',
                 'roadmap-sub': 'O nosso planeamento de execução ao longo do semestre (Semanas 1 a 14).',
                 'm1-badge':    'M1 &nbsp;·&nbsp; Semanas 1–3',
                 'm1-h4':       'Inception',
-                'm1-p':        'Levantamento de hardware disponível, comunicação inicial entre Wearable e telemóvel, e primeira integração com processamento na cloud.',
+                'm1-p':        'Levantamento de hardware disponível, comunicação inicial entre Wearable e telemóvel, e primeiros testes de deteção de objetos e profundidade on-device.',
                 'm2-badge':    'M2 &nbsp;·&nbsp; Semanas 4–6',
                 'm2-h4':       'Elaboration',
                 'm2-p':        'Desenvolvimento da aplicação móvel, streaming simultâneo de múltiplos sensores, sincronização de fluxos de dados e elaboração do relatório de Elaboration.',
                 'm3-badge':    'M3 &nbsp;·&nbsp; Semanas 7–9',
                 'm3-h4':       'Construction',
-                'm3-p':        'Pipeline cloud com modelos de ML, visualização e comunicação V2X via ATCLL, e primeiro protótipo funcional com os Smart Glasses (Omi Glasses).',
+                'm3-p':        'Pipeline backend com modelos ML em GPU, integração yolov11 + Depth Anything, sherpa/TTS, e primeiro protótipo funcional com os Omi Glasses e Brilliant Sole.',
                 'm4-badge':    'M4 &nbsp;·&nbsp; Semanas 10–14',
                 'm4-h4':       'Transition',
-                'm4-p':        'Feedback ao utilizador em tempo real, integração End-to-End completa, testes reais com o veículo PIXKIT no ATCLL, apresentação final e poster para DETI Students.',
+                'm4-p':        'Feedback háptico e auditivo ao utilizador em tempo real, integração End-to-End completa, testes reais com utilizadores, apresentação final e poster para DETI Students.',
                 'docs-h2':     'Documentos &amp; Entregáveis',
                 'docs-sub':    'Acompanhe o nosso progresso através dos relatórios e apresentações.',
-                'doc1-h4':     'Apresentação M1 — Inception',
-                'doc1-p':      'Apresentação inicial do projeto, contexto, equipa, arquitetura e plano de trabalho.',
                 'doc-download':'Download PDF',
-                'doc2-h4':     'Proposta de Projeto — PECI 2025/26',
-                'doc2-p':      'Documento de proposta oficial com descrição, objetivos, plano de trabalho e infraestrutura ATCLL.',
-                'doc3-h4':     'Relatório M2 — Elaboration',
-                'doc3-p':      'Relatório de requisitos, arquitetura e progresso da Elaboration.',
-                'doc4-h4':     'Apresentação M3 — Construction',
-                'doc4-p':      'Demonstração do protótipo e resultados da fase de Construction.',
-                'doc5-h4':     'Poster M4 — DETI Students',
-                'doc5-p':      'Poster científico apresentado no evento final DETI Students.',
+                'doc0a-h4':    'Apresentação M1 — Inception',
+                'doc0a-p':     'Apresentação inicial do projeto, contexto, equipa, arquitetura e plano de trabalho.',
+                'doc0b-h4':    'Proposta de Projeto — PECI 2025/26',
+                'doc0b-p':     'Documento de proposta oficial com descrição, objetivos, plano de trabalho e infraestrutura ATCLL.',
+                'doc1-h4':     'Apresentação M2 — Elaboration',
+                'doc1-p':      'Slides da apresentação da fase de Elaboration: arquitetura, integração BLE e primeiros resultados.',
+                'doc2-h4':     'Apresentação M3 — Construction',
+                'doc2-p':      'Slides da demonstração do protótipo funcional e resultados da fase de Construction.',
+                'doc3-h4':     'Apresentação Final — M4 Transition',
+                'doc3-p':      'Slides da apresentação final com integração End-to-End completa e resultados dos testes.',
+                'doc4-h4':     'Poster — DETI Students',
+                'doc4-p':      'Poster científico apresentado no evento final DETI Students.',
+                'doc5-h4':     'Relatório Final',
+                'doc5-p':      'Relatório final do projeto com arquitetura, implementação, resultados e conclusões.',
                 'badge-soon':  'Em breve',
+                'demo-h2':     'Demo &amp; Protótipo',
+                'demo-sub':    'Demonstração em vídeo do sistema em funcionamento.',
+                'demo-placeholder': 'Vídeo de demonstração em breve',
+                'demo-title':  'Sistema em Ação',
+                'demo-desc':   'Vê o sistema a funcionar na prática — um peão equipado com óculos inteligentes e um smartwatch a navegar num ambiente urbano com alertas em tempo real sobre o que o rodeia.',
+                'demo-docs-btn': 'Ver Documentos',
                 'related-h2':  'Trabalhos Relacionados',
                 'related-sub': 'Projetos, infraestruturas e artigos que servem de base à nossa investigação.',
                 'rel1-tag':    'Infraestrutura',
@@ -1365,11 +1754,11 @@
                 'rel1-src':    'Universidade de Aveiro / IT',
                 'rel2-tag':    'Artigo Científico',
                 'rel2-h4':     'SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety',
-                'rel2-p':      'Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Valida a eficácia de alertas ao VRU — o nosso projeto fornece os dados sensoriais. AutomotiveUI \'24, Stanford.',
+                'rel2-p':      'Sistema de realidade aumentada integrado com V2X e ATCLL que fornece avisos de colisão e semáforos virtuais para peões via HoloLens 2. Estudo com 20 utilizadores. AutomotiveUI \'24, Stanford.',
                 'rel2-src':    'Clérigo, Rito, Sargento et al. &mdash; 2024',
                 'rel3-tag':    'Demo IEEE VNC 2025',
                 'rel3-h4':     'Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety',
-                'rel3-p':      'Conceito base do VRU como sensor — estendemos a abordagem para wearables discretos (Omi Glasses + WristBand). Hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL via ITS-G5, com deteção em tempo real. IEEE VNC 2025.',
+                'rel3-p':      'Demonstração de um hub de sensing móvel (Android + HoloLens 2 + NVIDIA Jetson) integrado no ATCLL. Deteção de objetos em tempo real com latência inferior a 300 ms. IEEE VNC 2025.',
                 'rel3-src':    'G. Silva, Clérigo, Rito, Sargento &mdash; 2025',
                 'btn-read-more':'Ler mais',
                 'team-h2':     'A Nossa Equipa',
@@ -1389,74 +1778,105 @@
             en: {
                 'nav-about':   'About',
                 'nav-tasks':   'Tasks',
+                'nav-impl':    'Implementation',
+                'nav-demo':    'Demo',
                 'nav-tech':    'Technologies',
                 'nav-roadmap': 'Roadmap',
                 'nav-docs':    'Documents',
                 'nav-related': 'Related Work',
                 'nav-team':    'Team',
                 'hero-h1':     'Programmable Wearables for<br>Human Perception',
-                'hero-p':      'Multimodal Wearable-based acquisition to ensure the road safety of pedestrians and vulnerable road users (VRUs).',
+                'hero-p':      'Multimodal Wearable-based acquisition to ensure the safety of pedestrians and vulnerable road users (VRUs) in smart cities.',
                 'hero-cta1':   'Discover the Project',
                 'hero-cta2':   'The Team',
                 'hero-scroll': 'scroll',
                 'about-h2':    'Problem &amp; Opportunity',
-                'about-sub':   'Distractions, lack of timely alerts, and poor communication put pedestrians and cyclists at risk every day.',
-                'about-p1':    'Road safety is compromised by <strong>pedestrian and driver distractions</strong> and the <strong>absence of timely alerts</strong>. What is missing today are real-time warnings, discreet user feedback, and a dynamic, simple, and accessible system that does not rely exclusively on fixed infrastructure.',
-                'about-p2':    'Our project addresses this problem directly from the perspective of the vulnerable road user (pedestrian / cyclist). Using <strong>discreet Wearables</strong> — Omi Glasses, WristBand, and Smartphone — it is possible to detect gestures, posture, and attention, converting them into "intentions" transmitted in real time to connected vehicles via V2X infrastructure.',
-                'hl1-h4':      'Distractions &amp; Risks',
-                'hl1-p':       'Distracted pedestrians and inattentive drivers pose serious risks that current systems cannot mitigate in real time.',
-                'hl2-h4':      'Discreet Wearables',
-                'hl2-p':       'Omi Glasses (camera, microphone, IMU), WristBand (IMU, vibration motor), and Smartphone (GPS, accelerometer) as context sensors.',
-                'hl3-h4':      'V2X Communication',
-                'hl3-p':       'Detected intentions are propagated in real time via ITS-G5 to vehicles and smart city infrastructure.',
+                'about-sub':   'Why Wearables? Because the vulnerable user is already at the center of the problem.',
+                'about-p1':    'The demand for <strong>Smart Cities</strong> and autonomous driving is growing rapidly. However, traditional infrastructure-based systems — fixed cameras and radars — often prove insufficient due to <strong>limited coverage, blind spots, and high deployment and maintenance costs</strong>.',
+                'about-p2':    'Our project addresses this problem directly from the perspective of the vulnerable road user (pedestrian / cyclist). By leveraging the sensors already present in <strong>Wearables</strong> we use daily, it is possible to detect gestures, posture, and attention, converting them into "intentions" transmitted in real time to connected vehicles.',
+                'hl1-h4':      'Blind Spots &amp; Coverage',
+                'hl1-p':       'Static infrastructure does not cover all urban risk scenarios.',
+                'hl2-h4':      'Cloud Processing',
+                'hl2-p':       'Anonymised data sent to the cloud with greater computational capacity for ML model inference.',
+                'hl3-h4':      'Intent Inference',
+                'hl3-p':       'Lightweight ML models detect gestures, posture, and user attention in real time.',
                 'privacy-h4':  'Privacy &amp; GDPR Compliance',
                 'privacy-p':   'The data collected — including gestures and posture captured by Wearables — are <strong>anonymised at the source</strong>, before any transmission. The anonymised data are sent to a <strong>cloud infrastructure</strong> for processing by ML models, given the greater computational power available compared to a mobile device. No personally identifiable data is transmitted or stored externally. All data processing complies with the <strong>General Data Protection Regulation (GDPR)</strong>, ensuring the privacy and rights of participants at all stages of the project.',
                 'tasks-h2':    'Project Tasks',
-                'tasks-sub':   'Four integrated workstreams for a complete end-to-end solution.',
-                'task1-h4':    'Data Extraction',
-                'task1-p':     'Characterisation and integration of Wearables (Omi Glasses, WristBand, Smartphone), development of the data acquisition module, and creation of training datasets.',
-                'task2-h4':    'Gateway &amp; Synchronisation',
-                'task2-p':     'Development of the Android mobile application as a central hub, capable of receiving and synchronising data streams from multiple Wearables simultaneously.',
-                'task3-h4':    'Processing &amp; Events',
-                'task3-p':     'Processing pipeline with ML models for simple event detection — such as crossing intention or distracted pedestrian — with decisions on execution location (edge vs cloud).',
-                'task4-h4':    'Exposure &amp; Feedback',
-                'task4-p':     'End-to-end demonstration with data visualisation, V2X communication via ATCLL, and real-time user feedback (visual and vibration alerts).',
+                'tasks-sub':   'Five integrated workstreams for a complete end-to-end solution.',
+                'task1-h4':    'Abstraction Layer',
+                'task1-p':     'Components to abstract data from multiple wearables (omiGlass and Brilliant Sole) via BLE/Wi-Fi, with a unified protocol, linear-regression time sync, and a central Android hub.',
+                'task2-h4':    'Visual Perception',
+                'task2-p':     'Object detection with <strong>yolov11</strong> and monocular depth estimation with <strong>Depth Anything V2</strong>, both on-device via ONNX Runtime and on a GPU Python backend.',
+                'task3-h4':    'Audio &amp; Voice',
+                'task3-p':     'Opus 16 kHz audio pipeline with jitter buffer, real-time transcription with <strong>sherpa</strong> for voice commands, and alert synthesis with <strong>TTS</strong>.',
+                'task4-h4':    'Haptic Feedback',
+                'task4-p':     'Real-time notifications on the <strong>Brilliant Sole</strong> via BLE TX/RX: distinct vibration patterns (proximity, crossing, gesture) with the DRV2605 motor in waveformEffect and custom waveform mode.',
+                'task5-h4':    'Machine Learning',
+                'task5-p':     'Dataset collection and training of lightweight models for user intent detection — gestures, posture, and change of direction.',
+                'impl-h2':     'Technical Implementation',
+                'impl-sub':    'AI pipelines and sensor integration implemented in the app and in the cloud.',
+                'impl1-h4':    'Object Detection &amp; Depth — On-Device',
+                'impl1-sub':   'Android · ONNX Runtime',
+                'impl1-p':     'Local pipeline with <strong>yolov11n</strong> and <strong>Depth Anything V2</strong> via ONNX Runtime. Omi Glasses frames are letterbox-preprocessed and metric distance is estimated from bounding boxes and the depth map.',
+                'impl2-h4':    'Object Detection &amp; Depth — Backend',
+                'impl2-sub':   'Python · FastAPI · GPU',
+                'impl2-p':     'Server-side version running larger-scale models on GPU. JPEG frames from Omi Glasses are sent via HTTP to a Python backend, which runs <strong>yolov11</strong> and <strong>Depth Anything</strong> with greater accuracy and returns detections and the depth map to the app.',
+                'impl3-h4':    'Speech Recognition &amp; Synthesis (sherpa + TTS)',
+                'impl3-sub':   ' sherpa · TTS · Opus 16kHz',
+                'impl3-p':     'Omi Glasses Opus 16 kHz audio is transcribed in real time with <strong>sherpa</strong> for hands-free voice commands. Alerts and instructions are synthesised with <strong>TTS</strong>. The pipeline includes a jitter buffer and µ-law/Opus decoder for continuous playback.',
+                'impl4-h4':    'Smartwatch Notifications (Vibrations &amp; Sounds)',
+                'impl4-sub':   'Brilliant Sole · DRV2605 · BLE TX/RX',
+                'impl4-p':     'The <strong>Brilliant Sole</strong> receives real-time alerts via BLE. The <strong>DRV2605</strong> motor is triggered in <strong>waveformEffect</strong> mode (preset effects) or <strong>waveform</strong> mode (custom amplitude and duration), encoding proximity alerts, crossing warnings, and gesture confirmations as distinct haptic patterns.',
+                'tech6-p':     'Detection &amp; Depth',
+                'tech7-p':     'Voice &amp; Synthesis',
+                'tech8-p':     'FastAPI &amp; GPU Inference',
+                'tech9-p':     'On-Device Inference',
                 'tech-h2':     'Technologies',
                 'tech-sub':    'Tools and protocols underpinning the solution.',
                 'tech1-p':     'Data Hub &amp; Mobile Dev',
                 'tech2-p':     'Wearable Communication',
-                'tech3-h4':    'Wearables',
-                'tech3-p':     'Omi Glasses, WristBand, Smartphone',
+                'tech3-h4':    'XR Devices',
                 'tech4-p':     'Vehicular Communications',
-                'tech5-p':     'Versioning &amp; CI/CD',
+                'tech5-p':     'Versioning &amp; Hosting',
                 'roadmap-h2':  'Project Roadmap',
                 'roadmap-sub': 'Our execution plan over the semester (Weeks 1 to 14).',
                 'm1-badge':    'M1 &nbsp;·&nbsp; Weeks 1–3',
                 'm1-h4':       'Inception',
-                'm1-p':        'Hardware survey, initial Wearable-to-phone communication, and first integration with cloud processing.',
+                'm1-p':        'Hardware survey, initial Wearable-to-phone communication, and first on-device object detection and depth estimation tests.',
                 'm2-badge':    'M2 &nbsp;·&nbsp; Weeks 4–6',
                 'm2-h4':       'Elaboration',
                 'm2-p':        'Mobile application development, simultaneous streaming of multiple sensors, data stream synchronisation, and Elaboration report.',
                 'm3-badge':    'M3 &nbsp;·&nbsp; Weeks 7–9',
                 'm3-h4':       'Construction',
-                'm3-p':        'Cloud pipeline with ML models, V2X visualisation and communication via ATCLL, and first functional prototype with Smart Glasses (Omi Glasses).',
+                'm3-p':        'Backend pipeline with GPU ML models, yolov11 + Depth Anything integration, sherpa/TTS, and first functional prototype with Omi Glasses and Brilliant Sole.',
                 'm4-badge':    'M4 &nbsp;·&nbsp; Weeks 10–14',
                 'm4-h4':       'Transition',
-                'm4-p':        'Real-time user feedback, complete End-to-End integration, real-world tests with the PIXKIT vehicle at ATCLL, final presentation, and DETI Students poster.',
+                'm4-p':        'Real-time haptic and audio feedback, complete End-to-End integration, real-world user tests, final presentation, and DETI Students poster.',
                 'docs-h2':     'Documents &amp; Deliverables',
                 'docs-sub':    'Follow our progress through reports and presentations.',
-                'doc1-h4':     'M1 Presentation — Inception',
-                'doc1-p':      'Initial project presentation: context, team, architecture, and work plan.',
                 'doc-download':'Download PDF',
-                'doc2-h4':     'Project Proposal — PECI 2025/26',
-                'doc2-p':      'Official proposal document with description, objectives, work plan, and ATCLL infrastructure.',
-                'doc3-h4':     'M2 Report — Elaboration',
-                'doc3-p':      'Requirements, architecture, and Elaboration progress report.',
-                'doc4-h4':     'M3 Presentation — Construction',
-                'doc4-p':      'Prototype demonstration and Construction phase results.',
-                'doc5-h4':     'M4 Poster — DETI Students',
-                'doc5-p':      'Scientific poster presented at the DETI Students final event.',
+                'doc0a-h4':    'M1 Presentation — Inception',
+                'doc0a-p':     'Initial project presentation: context, team, architecture, and work plan.',
+                'doc0b-h4':    'Project Proposal — PECI 2025/26',
+                'doc0b-p':     'Official proposal document with description, objectives, work plan, and ATCLL infrastructure.',
+                'doc1-h4':     'M2 Presentation — Elaboration',
+                'doc1-p':      'Slides from the Elaboration phase: architecture, BLE integration, and first results.',
+                'doc2-h4':     'M3 Presentation — Construction',
+                'doc2-p':      'Prototype demonstration slides and Construction phase results.',
+                'doc3-h4':     'Final Presentation — M4 Transition',
+                'doc3-p':      'Final presentation slides with complete End-to-End integration and test results.',
+                'doc4-h4':     'Poster — DETI Students',
+                'doc4-p':      'Scientific poster presented at the DETI Students final event.',
+                'doc5-h4':     'Final Report',
+                'doc5-p':      'Final project report covering architecture, implementation, results, and conclusions.',
                 'badge-soon':  'Coming soon',
+                'demo-h2':     'Demo &amp; Prototype',
+                'demo-sub':    'Video demonstration of the system in action.',
+                'demo-placeholder': 'Demo video coming soon',
+                'demo-title':  'System in Action',
+                'demo-desc':   'See the system in action — a pedestrian equipped with smart glasses and a wristband navigating an urban environment with real-time awareness of everything around them.',
+                'demo-docs-btn': 'View Documents',
                 'related-h2':  'Related Work',
                 'related-sub': 'Projects, infrastructures, and papers that form the basis of our research.',
                 'rel1-tag':    'Infrastructure',
@@ -1465,11 +1885,11 @@
                 'rel1-src':    'Universidade de Aveiro / IT',
                 'rel2-tag':    'Scientific Paper',
                 'rel2-h4':     'SafeARCross: AR Collision Warnings &amp; Virtual Traffic Lights for Pedestrian Safety',
-                'rel2-p':      'Augmented reality system integrated with V2X and ATCLL that provides collision warnings and virtual traffic lights for pedestrians via HoloLens 2. Validates VRU alert effectiveness — our project supplies the sensory data. AutomotiveUI \'24, Stanford.',
+                'rel2-p':      'Augmented reality system integrated with V2X and ATCLL that provides collision warnings and virtual traffic lights for pedestrians via HoloLens 2. Study with 20 users. AutomotiveUI \'24, Stanford.',
                 'rel2-src':    'Clérigo, Rito, Sargento et al. &mdash; 2024',
                 'rel3-tag':    'IEEE VNC 2025 Demo',
                 'rel3-h4':     'Integrating AR Headsets with Mobile Object Detection to Extend Road Sensing and VRU Safety',
-                'rel3-p':      'Core concept of VRU as sensor — we extend the approach to discreet wearables (Omi Glasses + WristBand). Mobile sensing hub (Android + HoloLens 2 + NVIDIA Jetson) integrated in ATCLL via ITS-G5, with real-time detection. IEEE VNC 2025.',
+                'rel3-p':      'Demonstration of a mobile sensing hub (Android + HoloLens 2 + NVIDIA Jetson) integrated in ATCLL. Real-time object detection with latency below 300 ms. IEEE VNC 2025.',
                 'rel3-src':    'G. Silva, Clérigo, Rito, Sargento &mdash; 2025',
                 'btn-read-more':'Read more',
                 'team-h2':     'Our Team',
